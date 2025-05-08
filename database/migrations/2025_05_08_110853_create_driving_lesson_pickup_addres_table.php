@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('driving_lesson_pickup_addres', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('drivingLessonId')->constrained()->onDelete('cascade');
+            $table->foreignId('pickupAddressId')->constrained()->onDelete('cascade');
+            $table->boolean('isActive')->default(true);
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }
