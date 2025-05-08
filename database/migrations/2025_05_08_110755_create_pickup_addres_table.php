@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('pickup_addres', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('streetName', 50);
+            $table->integer('houseNumber', 10);
+            $table->integer('addition', 10)->nullable();
+            $table->integer('postalCode', 10);
+            $table->integer('place', 50);
+            $table->boolean('isActive')->default(true);
+            $table->string('comment', 255)->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 
