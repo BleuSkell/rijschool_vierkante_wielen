@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePackagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('packages', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->string('type', 50);
+            $table->unsignedInteger('number_of_lessons');
+            $table->decimal('price_per_lesson', 10, 2);
+            $table->boolean('is_active')->default(true);
+            $table->string('note', 255)->nullable();
+            $table->dateTime('date_created')->nullable();
+            $table->dateTime('date_modified')->nullable();
         });
     }
 
@@ -24,4 +30,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('packages');
     }
-};
+}
