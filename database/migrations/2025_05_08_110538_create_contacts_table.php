@@ -25,10 +25,6 @@ class CreateContactsTable extends Migration
             $table->string('note', 255)->nullable();
             $table->dateTime('date_created')->nullable();
             $table->dateTime('date_modified')->nullable();
-
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users');
         });
     }
 

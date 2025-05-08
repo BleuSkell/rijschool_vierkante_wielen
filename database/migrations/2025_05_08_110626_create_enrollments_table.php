@@ -21,14 +21,6 @@ class CreateEnrollmentsTable extends Migration
             $table->string('note', 255)->nullable();
             $table->dateTime('date_created')->nullable();
             $table->dateTime('date_modified')->nullable();
-
-            $table->foreign('student_id')
-                  ->references('id')
-                  ->on('students');
-
-            $table->foreign('package_id')
-                  ->references('id')
-                  ->on('packages');
         });
     }
 
