@@ -12,8 +12,8 @@ class CreateRolesTable extends Migration
     public function up(): void
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');            
             $table->string('name', 100);
             $table->boolean('is_active')->default(true);
             $table->string('note', 255)->nullable();

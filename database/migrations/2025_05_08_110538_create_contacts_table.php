@@ -12,8 +12,8 @@ class CreateContactsTable extends Migration
     public function up(): void
     {
         Schema::create('contacts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');            
             $table->string('street_name', 100);
             $table->string('house_number', 10);
             $table->string('addition', 10)->nullable();

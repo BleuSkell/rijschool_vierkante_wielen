@@ -12,9 +12,9 @@ class CreateEnrollmentsTable extends Migration
     public function up(): void
     {
         Schema::create('enrollments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('student_id');
-            $table->unsignedInteger('package_id');
+            $table->id();
+            $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            $table->foreignId('package_id')->constrained()->onDelete('cascade');            
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->boolean('is_active')->default(true);
@@ -27,3 +27,20 @@ class CreateEnrollmentsTable extends Migration
                   ->on('students');
 
             $table->foreign('package_id')
+                  ->references('id')
+                  ->on('packages');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('enrollments', function (Blueprint $table) {
+            $table->dropForeign(['student_id']);
+            $table->dropForeign(['package_id']);
+        });
+        Schema::dropIfExists('enrollments');
+    }
+}

@@ -12,7 +12,7 @@ class CreatePackagesTable extends Migration
     public function up(): void
     {
         Schema::create('packages', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('type', 50);
             $table->unsignedInteger('number_of_lessons');
             $table->decimal('price_per_lesson', 10, 2);
