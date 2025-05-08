@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('enrollmentId')->constrained()->onDelete('cascade');
+            $table->string('invoiceNumber')->unique();
+            $table->date('invoiceDate');
+            $table->decimal('amountExcBtw', 10, 2);
+            $table->integer('btw');
+            $table->decimal('amountIncBtw', 10, 2);
+            $table->string('invoiceStatus');
+            $table->boolean('isActive')->default(true);
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }
