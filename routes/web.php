@@ -18,3 +18,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/account.php';
+require __DIR__.'/car.php';
+require __DIR__.'/drivelesson.php';
+require __DIR__.'/instructor.php';
+require __DIR__.'/invoice.php';
+require __DIR__.'/notification.php';
+require __DIR__.'/package.php';
+require __DIR__.'/payment.php';
+require __DIR__.'/student.php';
+
