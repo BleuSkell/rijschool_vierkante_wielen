@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('enrollmentId')->constrained()->onDelete('cascade');
+            $table->foreignId('enrollmentId')->constrained('enrollments')->onDelete('cascade');
             $table->string('invoiceNumber')->unique();
             $table->date('invoiceDate');
             $table->decimal('amountExcBtw', 10, 2);
