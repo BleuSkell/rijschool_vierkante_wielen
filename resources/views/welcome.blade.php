@@ -22,9 +22,60 @@
     <body class="bg-[#2C2B29]">
         @include('layouts.navigation')
 
-        <header></header>
+        <header>
+            <div class="banner-container w-full">
+                <img src="{{ asset('img/banner.jpg') }}" alt="banner" class="w-full h-auto object-cover">
+            </div>
+        </header>
 
-        <main></main>
+        <main>
+            <div class="statementimgs flex justify-evenly mt-[4rem]">
+                <img src="{{ asset('img/statement1.png') }}" alt="statement img 1">
+                <img src="{{ asset('img/statement2.png') }}" alt="statement img 2">
+                <img src="{{ asset('img/statement3.png') }}" alt="statement img 3">
+                <img src="{{ asset('img/statement4.png') }}" alt="statement img 4">
+            </div>
+
+            <div class="info text-white flex justify-center mt-[4rem]">
+                <div class="w-[70%]">
+                    <h1>
+                        Autorijschool Vierkante Wielen: Uw ervaren rijschool in de buurt
+                    </h1>
+
+                    <p>
+                        Rijschool Vierkante Wielen staat voor professionele en resultaatgerichte rijopleidingen. Wij geloven in een persoonlijke aanpak, waarbij rust, vertrouwen en duidelijke instructies centraal staan. Met ervaren instructeurs en moderne lesmethoden begeleiden wij jou stap voor stap naar een veilig en zelfstandig rijgedrag. Of je nu beginnende bestuurder bent of extra begeleiding nodig hebt – bij ons ben je in goede handen.
+                    </p>
+
+                    <p>
+                        Klaar om je rijbewijs te halen? Start vandaag nog!
+                    </p>
+
+                    <button>
+                        Bekijk pakketten
+                    </button>
+                </div>
+            </div>
+
+            <div class="statements flex flex-row justify-center mt-[4rem]">
+                <div class="flex-col">
+                    <img src="{{ asset('img/statement2.png') }}" alt="statement img 2" class="w-[20rem]">
+
+                    <div class="reviews w-[60%] text-white">
+                        <p>
+                            ⭐️⭐️⭐️⭐️⭐️"Zeer tevreden over de lessen! Mijn instructeur bleef altijd rustig en legde alles duidelijk uit. Dankzij hun begeleiding ben ik in één keer geslaagd. Een aanrader voor iedereen die op zoek is naar een rijschool met persoonlijke aandacht."– Sophie J.
+                        </p>
+
+                        <p>
+                            ⭐️⭐️⭐️⭐️⭐️"Goede service en fijne sfeer. De lesauto was modern en comfortabel, en de planning verliep altijd soepel. Ik voelde me goed voorbereid op het praktijkexamen."– Anouar D.
+                        </p>
+
+                        <p>
+                            ⭐️⭐️⭐️⭐️"Professionele aanpak. Ik was eerst erg nerveus om te beginnen, maar mijn instructeur hielp me rustig op weg. Af en toe iets strenger, maar precies wat ik nodig had om door te zetten."– Laura M.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
 
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
