@@ -3,18 +3,7 @@
 -- Used instead of seeders due to earlier issues with seeders in other projects
 
 -- Table: users
-INSERT INTO users (name, email, email_verified_at, password, remember_token, created_at, updated_at)
-VALUES
-('John Doe', 'john.doe@example.com', NULL, 'password123', NULL, NOW(), NOW()),
-('Jane Smith', 'jane.smith@example.com', NULL, 'password123', NULL, NOW(), NOW()),
-('Alice Brown', 'alice.brown@example.com', NULL, 'password123', NULL, NOW(), NOW()),
-('Bob White', 'bob.white@example.com', NULL, 'password123', NULL, NOW(), NOW()),
-('Charlie Black', 'charlie.black@example.com', NULL, 'password123', NULL, NOW(), NOW()),
-('Diana Green', 'diana.green@example.com', NULL, 'password123', NULL, NOW(), NOW()),
-('Eve Blue', 'eve.blue@example.com', NULL, 'password123', NULL, NOW(), NOW()),
-('Frank Yellow', 'frank.yellow@example.com', NULL, 'password123', NULL, NOW(), NOW()),
-('Grace Red', 'grace.red@example.com', NULL, 'password123', NULL, NOW(), NOW()),
-('Hank Purple', 'hank.purple@example.com', NULL, 'password123', NULL, NOW(), NOW());
+-- this is made with the seeder due to the fact that the password is hashed and cannot be done in the insert script
 
 -- Table: roles
 INSERT INTO roles (userId, name, isActive, note, dateCreated, dateModified)
