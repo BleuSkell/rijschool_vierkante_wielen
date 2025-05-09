@@ -18,7 +18,7 @@ class CreateNotificationsTable extends Migration
             $table->string('message', 255);
             $table->string('notificationType', 50);
             $table->dateTime('date')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();
             $table->dateTime('dateCreated')->nullable();
             $table->dateTime('dateModified')->nullable();
