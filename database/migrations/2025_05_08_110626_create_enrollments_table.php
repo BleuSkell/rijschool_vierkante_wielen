@@ -13,8 +13,8 @@ class CreateEnrollmentsTable extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('studentId')->constrained()->onDelete('cascade');
-            $table->foreignId('packageId')->constrained()->onDelete('cascade');            
+            $table->foreignId('studentId')->constrained('students')->onDelete('cascade');
+            $table->foreignId('packageId')->constrained('packages')->onDelete('cascade');            
             $table->date('startDate')->nullable();
             $table->date('endDate')->nullable();
             $table->boolean('isActive')->default(true);

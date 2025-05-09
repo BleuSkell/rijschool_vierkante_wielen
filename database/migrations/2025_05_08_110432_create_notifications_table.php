@@ -13,7 +13,7 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('userId')->constrained()->onDelete('cascade');            
+            $table->foreignId('userId')->constrained('users')->onDelete('cascade');            
             $table->string('targetGroup', 50);
             $table->string('message', 255);
             $table->string('notificationType', 50);

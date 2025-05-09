@@ -13,7 +13,7 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('userId')->constrained()->onDelete('cascade');            
+            $table->foreignId('userId')->constrained('users')->onDelete('cascade');            
             $table->string('streetName', 100);
             $table->string('houseNumber', 10);
             $table->string('addition', 10)->nullable();

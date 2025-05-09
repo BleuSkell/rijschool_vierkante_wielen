@@ -13,7 +13,7 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('userId')->constrained()->onDelete('cascade');            
+            $table->foreignId('userId')->constrained('users')->onDelete('cascade');            
             $table->string('name', 100);
             $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();

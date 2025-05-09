@@ -13,7 +13,7 @@ class CreateInstructorsTable extends Migration
     {
         Schema::create('instructors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('userId')->constrained()->onDelete('cascade');            
+            $table->foreignId('userId')->constrained('users')->onDelete('cascade');            
             $table->string('number', 50);
             $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();

@@ -13,7 +13,7 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('userId')->constrained()->onDelete('cascade');            
+            $table->foreignId('userId')->constrained('users')->onDelete('cascade');            
             $table->string('relationNumber', 50);
             $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();
