@@ -17,8 +17,9 @@ return new class extends Migration
             $table->date('date');
             $table->string('status');
             $table->boolean('isActive')->default(true);
-            $table->string('comment')->nullable();
-            $table->timestamps();
+            $table->string('note', 255)->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 

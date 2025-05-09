@@ -15,12 +15,12 @@ class CreateCarsTable extends Migration
             $table->id();
             $table->string('brand', 100);
             $table->string('model', 100);
-            $table->string('license_plate', 20);
-            $table->string('fuel_type', 50);
-            $table->boolean('is_active')->default(true);
+            $table->string('licensePlate', 20);
+            $table->string('fuelType', 50);
+            $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();
-            $table->dateTime('date_created')->nullable();
-            $table->dateTime('date_modified')->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 

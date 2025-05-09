@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('postalCode', 10);
             $table->string('place', 50);
             $table->boolean('isActive')->default(true);
-            $table->string('comment', 255)->nullable();
+            $table->string('note', 255)->nullable();
             $table->dateTime('dateCreated')->nullable();
             $table->dateTime('dateModified')->nullable();
         });

@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreignId('drivingLessonId')->constrained('driving_lessons')->onDelete('cascade');
             $table->foreignId('pickupAddressId')->constrained('pickup_addres')->onDelete('cascade');
             $table->boolean('isActive')->default(true);
-            $table->string('comment')->nullable();
-            $table->timestamps();
+            $table->string('note', 255)->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 

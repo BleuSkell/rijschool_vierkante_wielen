@@ -14,12 +14,12 @@ class CreatePackagesTable extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('type', 50);
-            $table->unsignedInteger('number_of_lessons');
-            $table->decimal('price_per_lesson', 10, 2);
-            $table->boolean('is_active')->default(true);
+            $table->unsignedInteger('numberOfLessons');
+            $table->decimal('pricePerLesson', 10, 2);
+            $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();
-            $table->dateTime('date_created')->nullable();
-            $table->dateTime('date_modified')->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 

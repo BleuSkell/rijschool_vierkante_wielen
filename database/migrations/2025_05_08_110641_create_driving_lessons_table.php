@@ -23,10 +23,9 @@ return new class extends Migration
             $table->string('lessonStatus', 50);
             $table->string('goal', 50);
             $table->boolean('isActive')->default(true);
-            $table->string('comment', 255)->nullable();
+            $table->string('note', 255)->nullable();
             $table->dateTime('dateCreated')->nullable();
             $table->dateTime('dateModified')->nullable();
-
         });
     }
 

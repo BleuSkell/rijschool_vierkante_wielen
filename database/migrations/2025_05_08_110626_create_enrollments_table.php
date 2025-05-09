@@ -13,14 +13,14 @@ class CreateEnrollmentsTable extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained()->onDelete('cascade');
-            $table->foreignId('package_id')->constrained()->onDelete('cascade');            
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->foreignId('studentId')->constrained()->onDelete('cascade');
+            $table->foreignId('packageId')->constrained()->onDelete('cascade');            
+            $table->date('startDate')->nullable();
+            $table->date('endDate')->nullable();
+            $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();
-            $table->dateTime('date_created')->nullable();
-            $table->dateTime('date_modified')->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 
@@ -30,8 +30,8 @@ class CreateEnrollmentsTable extends Migration
     public function down(): void
     {
         Schema::table('enrollments', function (Blueprint $table) {
-            $table->dropForeign(['student_id']);
-            $table->dropForeign(['package_id']);
+            $table->dropForeign(['studentId']);
+            $table->dropForeign(['packageId']);
         });
         Schema::dropIfExists('enrollments');
     }

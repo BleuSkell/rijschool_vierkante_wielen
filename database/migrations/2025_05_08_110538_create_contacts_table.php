@@ -13,18 +13,18 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');            
-            $table->string('street_name', 100);
-            $table->string('house_number', 10);
+            $table->foreignId('userId')->constrained()->onDelete('cascade');            
+            $table->string('streetName', 100);
+            $table->string('houseNumber', 10);
             $table->string('addition', 10)->nullable();
-            $table->string('postal_code', 20);
+            $table->string('postalCode', 20);
             $table->string('city', 100);
             $table->string('mobile', 20)->nullable();
             $table->string('email', 100)->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();
-            $table->dateTime('date_created')->nullable();
-            $table->dateTime('date_modified')->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 
@@ -34,7 +34,7 @@ class CreateContactsTable extends Migration
     public function down(): void
     {
         Schema::table('contacts', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['userId']);
         });
         Schema::dropIfExists('contacts');
     }

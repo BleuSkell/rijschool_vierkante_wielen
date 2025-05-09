@@ -22,8 +22,9 @@ return new class extends Migration
             $table->string('location');
             $table->string('result');
             $table->boolean('isActive')->default(true);
-            $table->string('comment')->nullable();
-            $table->timestamps();
+            $table->string('note', 255)->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 

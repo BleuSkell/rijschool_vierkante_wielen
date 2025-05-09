@@ -13,12 +13,12 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');            
-            $table->string('relation_number', 50);
-            $table->boolean('is_active')->default(true);
+            $table->foreignId('userId')->constrained()->onDelete('cascade');            
+            $table->string('relationNumber', 50);
+            $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();
-            $table->dateTime('date_created')->nullable();
-            $table->dateTime('date_modified')->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 
@@ -28,7 +28,7 @@ class CreateStudentsTable extends Migration
     public function down(): void
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['userId']);
         });
         Schema::dropIfExists('students');
     }

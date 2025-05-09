@@ -13,15 +13,15 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');            
-            $table->string('target_group', 50);
+            $table->foreignId('userId')->constrained()->onDelete('cascade');            
+            $table->string('targetGroup', 50);
             $table->string('message', 255);
-            $table->string('notification_type', 50);
+            $table->string('notificationType', 50);
             $table->dateTime('date')->nullable();
             $table->boolean('is_active')->default(true);
             $table->string('note', 255)->nullable();
-            $table->dateTime('date_created')->nullable();
-            $table->dateTime('date_modified')->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 
@@ -31,7 +31,7 @@ class CreateNotificationsTable extends Migration
     public function down(): void
     {
         Schema::table('notifications', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['userId']);
         });
         Schema::dropIfExists('notifications');
     }

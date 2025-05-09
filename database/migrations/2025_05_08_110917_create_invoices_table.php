@@ -21,8 +21,9 @@ return new class extends Migration
             $table->decimal('amountIncBtw', 10, 2);
             $table->string('invoiceStatus');
             $table->boolean('isActive')->default(true);
-            $table->string('comment')->nullable();
-            $table->timestamps();
+            $table->string('note', 255)->nullable();
+            $table->dateTime('dateCreated')->nullable();
+            $table->dateTime('dateModified')->nullable();
         });
     }
 
