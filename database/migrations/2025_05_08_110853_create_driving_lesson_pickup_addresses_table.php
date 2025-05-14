@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pickup_addres', function (Blueprint $table) {
+        Schema::create('driving_lesson_pickup_addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('streetName', 50);
-            $table->integer('houseNumber');
-            $table->string('addition', 10)->nullable();
-            $table->string('postalCode', 10);
-            $table->string('place', 50);
+            $table->foreignId('drivingLessonId')->constrained('driving_lessons')->onDelete('cascade');
+            $table->foreignId('pickupAddressId')->constrained('pickup_addresses')->onDelete('cascade');
             $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();
             $table->dateTime('dateCreated')->nullable();
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pickup_addres');
+        Schema::dropIfExists('driving_lesson_pickup_addres');
     }
 };
