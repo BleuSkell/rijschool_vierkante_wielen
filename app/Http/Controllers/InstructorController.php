@@ -21,8 +21,26 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        return view('instructors.create');
+        $users = \App\Models\User::all();
+
+        $existingNumbers = Instructor::pluck('number')->toArray();
+
+        // Extract numeric parts and find the lowest available slot
+        $existingInts = array_map(function ($number) {
+            return (int) str_replace('INST-', '', $number);
+        }, $existingNumbers);
+
+        $lowest = 1;
+        while (in_array($lowest, $existingInts)) {
+            $lowest++;
+        }
+
+        $nextNumber = 'INST-' . str_pad($lowest, 3, '0', STR_PAD_LEFT);
+
+        return view('instructors.create', compact('users', 'nextNumber'));
     }
+
+
 
     /**
      * Store a newly created instructor in storage.
@@ -31,12 +49,13 @@ class InstructorController extends Controller
     {
         $validated = $request->validate([
             'userId' => 'required|exists:users,id',
-            'number' => 'required|string|max:50',
+            'number' => 'required|string|max:50|unique:instructors,number',
             'isActive' => 'boolean',
             'note' => 'nullable|string|max:255',
             'dateCreated' => 'nullable|date',
             'dateModified' => 'nullable|date',
         ]);
+
 
         Instructor::create($validated);
 
