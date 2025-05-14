@@ -131,8 +131,8 @@ VALUES
 (9, 9, 9, '2025-05-18', '17:00:00', '2025-05-18', '18:00:00', 'Scheduled', 'Traffic rules', true, 'Ninth lesson', NOW(), NOW()),
 (10, 10, 10, '2025-05-19', '18:00:00', '2025-05-19', '19:00:00', 'Completed', 'Final practice', true, 'Tenth lesson', NOW(), NOW());
 
--- Table: pickup_addres
-INSERT INTO pickup_addres (streetName, houseNumber, addition, postalCode, place, isActive, note, dateCreated, dateModified)
+-- Table: pickup_addresses
+INSERT INTO pickup_addresses (streetName, houseNumber, addition, postalCode, place, isActive, note, dateCreated, dateModified)
 VALUES
 ('Main Street', 123, NULL, '1234AB', 'Amsterdam', true, 'Pickup point 1', NOW(), NOW()),
 ('Second Avenue', 45, 'A', '5678CD', 'Rotterdam', true, 'Pickup point 2', NOW(), NOW()),
@@ -145,8 +145,8 @@ VALUES
 ('Ninth Plaza', 11, NULL, '5678QR', 'Arnhem', true, 'Pickup point 9', NOW(), NOW()),
 ('Tenth Square', 22, NULL, '9101ST', 'Zwolle', true, 'Pickup point 10', NOW(), NOW());
 
--- Table: driving_lesson_pickup_addres
-INSERT INTO driving_lesson_pickup_addres (drivingLessonId, pickupAddressId, isActive, note, dateCreated, dateModified)
+-- Table: driving_lesson_pickup_addresses
+INSERT INTO driving_lesson_pickup_addresses (drivingLessonId, pickupAddressId, isActive, note, dateCreated, dateModified)
 VALUES
 (1, 1, true, 'Pickup for lesson 1', NOW(), NOW()),
 (2, 2, true, 'Pickup for lesson 2', NOW(), NOW()),
