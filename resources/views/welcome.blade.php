@@ -56,22 +56,24 @@
                 </div>
             </div>
 
-            <div class="statements flex flex-row justify-center mt-[4rem]">
-                <div class="flex-col">
-                    <img src="{{ asset('img/statement2.png') }}" alt="statement img 2" class="w-[20rem]">
+            <div class="statements mt-[4rem]">
+                <div class="flex flex-row justify-center">
+                    <div class="flex flex-col items-center">
+                        <img src="{{ asset('img/statement2.png') }}" alt="statement img 2" class="w-[20rem]">
 
-                    <div class="reviews w-[60%] text-white">
-                        <p>
-                            ⭐️⭐️⭐️⭐️⭐️"Zeer tevreden over de lessen! Mijn instructeur bleef altijd rustig en legde alles duidelijk uit. Dankzij hun begeleiding ben ik in één keer geslaagd. Een aanrader voor iedereen die op zoek is naar een rijschool met persoonlijke aandacht."– Sophie J.
-                        </p>
+                        <div class="reviews w-[60%] text-white">
+                            <p>
+                                ⭐️⭐️⭐️⭐️⭐️"Zeer tevreden over de lessen! Mijn instructeur bleef altijd rustig en legde alles duidelijk uit. Dankzij hun begeleiding ben ik in één keer geslaagd. Een aanrader voor iedereen die op zoek is naar een rijschool met persoonlijke aandacht."– Sophie J.
+                            </p>
 
-                        <p>
-                            ⭐️⭐️⭐️⭐️⭐️"Goede service en fijne sfeer. De lesauto was modern en comfortabel, en de planning verliep altijd soepel. Ik voelde me goed voorbereid op het praktijkexamen."– Anouar D.
-                        </p>
+                            <p>
+                                ⭐️⭐️⭐️⭐️⭐️"Goede service en fijne sfeer. De lesauto was modern en comfortabel, en de planning verliep altijd soepel. Ik voelde me goed voorbereid op het praktijkexamen."– Anouar D.
+                            </p>
 
-                        <p>
-                            ⭐️⭐️⭐️⭐️"Professionele aanpak. Ik was eerst erg nerveus om te beginnen, maar mijn instructeur hielp me rustig op weg. Af en toe iets strenger, maar precies wat ik nodig had om door te zetten."– Laura M.
-                        </p>
+                            <p>
+                                ⭐️⭐️⭐️⭐️"Professionele aanpak. Ik was eerst erg nerveus om te beginnen, maar mijn instructeur hielp me rustig op weg. Af en toe iets strenger, maar precies wat ik nodig had om door te zetten."– Laura M.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
