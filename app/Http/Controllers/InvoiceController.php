@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
     public function index()
     {   
-        
+        $invoices = DB::select('CALL sp_get_all_invoices()');
 
-        return view('invoices.index');
+        return view('invoices.index', compact('invoices'));
     }
 
     public function show($id)
