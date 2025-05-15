@@ -19,63 +19,61 @@
             </style>
         @endif
     </head>
-    <body class="bg-[#2C2B29]">
+    <body class="bg-[#2C2B29] min-h-screen">
         @include('layouts.navigation')
 
         <header>
             <div class="banner-container w-full">
-                <img src="{{ asset('img/banner.jpg') }}" alt="banner" class="w-full h-auto object-cover">
+                <img src="{{ asset('img/banner.jpg') }}" alt="banner" class="w-full h-auto object-cover max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-[600px]">
             </div>
         </header>
 
         <main>
-            <div class="statementimgs flex justify-evenly mt-[4rem]">
-                <img src="{{ asset('img/statement1.png') }}" alt="statement img 1">
-                <img src="{{ asset('img/statement2.png') }}" alt="statement img 2">
-                <img src="{{ asset('img/statement3.png') }}" alt="statement img 3">
-                <img src="{{ asset('img/statement4.png') }}" alt="statement img 4">
+            <div class="statementimgs flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center mt-8 md:mt-16">
+                <img src="{{ asset('img/statement1.png') }}" alt="statement img 1" class="w-24 sm:w-32 md:w-40 lg:w-48">
+                <img src="{{ asset('img/statement2.png') }}" alt="statement img 2" class="w-24 sm:w-32 md:w-40 lg:w-48">
+                <img src="{{ asset('img/statement3.png') }}" alt="statement img 3" class="w-24 sm:w-32 md:w-40 lg:w-48">
+                <img src="{{ asset('img/statement4.png') }}" alt="statement img 4" class="w-24 sm:w-32 md:w-40 lg:w-48">
             </div>
 
-            <div class="info text-white flex justify-center mt-[4rem]">
-                <div class="w-[70%]">
-                    <h1 class="text-4xl font-bold mb-4">
+            <div class="info text-white flex justify-center mt-8 md:mt-16">
+                <div class="w-full max-w-2xl px-4">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center md:text-left">
                         Autorijschool Vierkante Wielen: Uw ervaren rijschool in de buurt
                     </h1>
 
-                    <p>
+                    <p class="mb-4 text-base md:text-lg text-center md:text-left">
                         Rijschool Vierkante Wielen staat voor professionele en resultaatgerichte rijopleidingen. Wij geloven in een persoonlijke aanpak, waarbij rust, vertrouwen en duidelijke instructies centraal staan. Met ervaren instructeurs en moderne lesmethoden begeleiden wij jou stap voor stap naar een veilig en zelfstandig rijgedrag. Of je nu beginnende bestuurder bent of extra begeleiding nodig hebt – bij ons ben je in goede handen.
                     </p>
 
-                    <p>
+                    <p class="mb-4 text-base md:text-lg text-center md:text-left">
                         Klaar om je rijbewijs te halen? Start vandaag nog!
                     </p>
 
-                    <button class="bg-[#8C2C29] text-white px-4 py-2 rounded-md mt-4">
-                        <a href="">
+                    <div class="flex justify-center md:justify-start">
+                        <a href="" class="bg-[#8C2C29] text-white px-4 py-2 rounded-md mt-4 hover:bg-[#a23a36] transition">
                             Bekijk pakketten →
                         </a>
-                    </button>
+                    </div>
                 </div>
             </div>
 
-            <div class="statements mt-[4rem]">
-                <div class="flex flex-row justify-center">
-                    <div class="flex flex-col items-center">
-                        <img src="{{ asset('img/statement2.png') }}" alt="statement img 2" class="w-[20rem] mt-[1rem] mb-[3rem]">
+            <div class="statements mt-8 md:mt-16">
+                <div class="flex flex-col items-center">
+                    <img src="{{ asset('img/statement2.png') }}" alt="statement img 2" class="w-40 sm:w-56 md:w-80 mt-4 mb-8">
 
-                        <div class="reviews w-[60%] text-white">
-                            <p class="mb-[1rem]">
-                                ⭐️⭐️⭐️⭐️⭐️"Zeer tevreden over de lessen! Mijn instructeur bleef altijd rustig en legde alles duidelijk uit. Dankzij hun begeleiding ben ik in één keer geslaagd. Een aanrader voor iedereen die op zoek is naar een rijschool met persoonlijke aandacht."– Sophie J.
-                            </p>
+                    <div class="reviews w-full max-w-xl text-white px-4">
+                        <p class="mb-4 text-sm md:text-base">
+                            ⭐️⭐️⭐️⭐️⭐️"Zeer tevreden over de lessen! Mijn instructeur bleef altijd rustig en legde alles duidelijk uit. Dankzij hun begeleiding ben ik in één keer geslaagd. Een aanrader voor iedereen die op zoek is naar een rijschool met persoonlijke aandacht."– Sophie J.
+                        </p>
 
-                            <p class="mb-[1rem]">
-                                ⭐️⭐️⭐️⭐️⭐️"Goede service en fijne sfeer. De lesauto was modern en comfortabel, en de planning verliep altijd soepel. Ik voelde me goed voorbereid op het praktijkexamen."– Anouar D.
-                            </p>
+                        <p class="mb-4 text-sm md:text-base">
+                            ⭐️⭐️⭐️⭐️⭐️"Goede service en fijne sfeer. De lesauto was modern en comfortabel, en de planning verliep altijd soepel. Ik voelde me goed voorbereid op het praktijkexamen."– Anouar D.
+                        </p>
 
-                            <p class="mb-[1rem]">
-                                ⭐️⭐️⭐️⭐️"Professionele aanpak. Ik was eerst erg nerveus om te beginnen, maar mijn instructeur hielp me rustig op weg. Af en toe iets strenger, maar precies wat ik nodig had om door te zetten."– Laura M.
-                            </p>
-                        </div>
+                        <p class="mb-4 text-sm md:text-base">
+                            ⭐️⭐️⭐️⭐️"Professionele aanpak. Ik was eerst erg nerveus om te beginnen, maar mijn instructeur hielp me rustig op weg. Af en toe iets strenger, maar precies wat ik nodig had om door te zetten."– Laura M.
+                        </p>
                     </div>
                 </div>
             </div>
