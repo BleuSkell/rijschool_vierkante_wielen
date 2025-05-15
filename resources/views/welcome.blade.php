@@ -38,7 +38,7 @@
 
             <div class="info text-white flex justify-center mt-[4rem]">
                 <div class="w-[70%]">
-                    <h1>
+                    <h1 class="text-4xl font-bold mb-4">
                         Autorijschool Vierkante Wielen: Uw ervaren rijschool in de buurt
                     </h1>
 
@@ -50,8 +50,10 @@
                         Klaar om je rijbewijs te halen? Start vandaag nog!
                     </p>
 
-                    <button>
-                        Bekijk pakketten
+                    <button class="bg-[#8C2C29] text-white px-4 py-2 rounded-md mt-4">
+                        <a href="">
+                            Bekijk pakketten →
+                        </a>
                     </button>
                 </div>
             </div>
@@ -59,18 +61,18 @@
             <div class="statements mt-[4rem]">
                 <div class="flex flex-row justify-center">
                     <div class="flex flex-col items-center">
-                        <img src="{{ asset('img/statement2.png') }}" alt="statement img 2" class="w-[20rem]">
+                        <img src="{{ asset('img/statement2.png') }}" alt="statement img 2" class="w-[20rem] mt-[1rem] mb-[3rem]">
 
                         <div class="reviews w-[60%] text-white">
-                            <p>
+                            <p class="mb-[1rem]">
                                 ⭐️⭐️⭐️⭐️⭐️"Zeer tevreden over de lessen! Mijn instructeur bleef altijd rustig en legde alles duidelijk uit. Dankzij hun begeleiding ben ik in één keer geslaagd. Een aanrader voor iedereen die op zoek is naar een rijschool met persoonlijke aandacht."– Sophie J.
                             </p>
 
-                            <p>
+                            <p class="mb-[1rem]">
                                 ⭐️⭐️⭐️⭐️⭐️"Goede service en fijne sfeer. De lesauto was modern en comfortabel, en de planning verliep altijd soepel. Ik voelde me goed voorbereid op het praktijkexamen."– Anouar D.
                             </p>
 
-                            <p>
+                            <p class="mb-[1rem]">
                                 ⭐️⭐️⭐️⭐️"Professionele aanpak. Ik was eerst erg nerveus om te beginnen, maar mijn instructeur hielp me rustig op weg. Af en toe iets strenger, maar precies wat ik nodig had om door te zetten."– Laura M.
                             </p>
                         </div>
@@ -78,9 +80,7 @@
                 </div>
             </div>
         </main>
-
-        @if (Route::has('login'))
-            <div class="h-14.5 hidden lg:block"></div>
-        @endif
+        
+        @include('components.footer')
     </body>
 </html>
