@@ -6,5 +6,43 @@ use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
-    //
+    public function index()
+    {   
+        
+
+        return view('invoices.index');
+    }
+
+    public function show($id)
+    {
+        return view('invoices.show', compact('id'));
+    }
+
+    public function create()
+    {
+        return view('invoices.create');
+    }
+
+    public function store(Request $request)
+    {
+        // Validate and store the invoice data
+        // Redirect or return a response
+    }
+
+    public function edit($id)
+    {
+        return view('invoices.edit', compact('id'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate and update the invoice data
+        // Redirect or return a response
+    }
+
+    public function destroy($id)
+    {
+        // Delete the invoice
+        // Redirect or return a response
+    }
 }
