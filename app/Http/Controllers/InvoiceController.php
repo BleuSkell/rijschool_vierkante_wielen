@@ -15,8 +15,10 @@ class InvoiceController extends Controller
     }
 
     public function show($id)
-    {
-        return view('invoices.show', compact('id'));
+    {   
+        $invoice = DB::select('CALL sp_get_invoices_by_id(?)', [$id]);
+        
+        return view('invoices.show', compact('invoice'));
     }
 
     public function create()

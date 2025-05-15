@@ -43,7 +43,7 @@
                         </div>
 
                         <div>
-                            <a href="">
+                            <a href="{{ route('invoices.show', $invoice->id) }}">
                                 <button class="">
                                     Details
                                 </button>

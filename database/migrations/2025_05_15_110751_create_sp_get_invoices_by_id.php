@@ -19,7 +19,9 @@ return new class extends Migration
                 IN invoice_id INT
             )
             BEGIN
-                SELECT * FROM invoices WHERE id = invoice_id;
+                SELECT * FROM invoices 
+                INNER JOIN enrollments ON invoices.enrollmentId = enrollments.Id
+                WHERE id = invoice_id;
             END
         ');
     }
