@@ -19,9 +19,27 @@ return new class extends Migration
                 IN invoice_id INT
             )
             BEGIN
-                SELECT * FROM invoices 
-                INNER JOIN enrollments ON invoices.enrollmentId = enrollments.Id
-                WHERE id = invoice_id;
+                SELECT inv.enrollmentId
+                        ,inv.invoiceNumber
+                        ,inv.invoiceDate
+                        ,inv.amountExcBtw
+                        ,inv.btw
+                        ,inv.amountIncBtw
+                        ,inv.invoiceStatus
+                        ,inv.note AS invoiceNote
+                        ,enr.studentId
+                        ,enr.packageId
+                        ,enr.startDate
+                        ,enr.endDate
+                        ,enr.note AS enrollmentNote
+                        ,stu.relationNumber
+                        ,stu.note AS studentNote
+                FROM invoices AS inv
+                INNER JOIN enrollments AS enr
+                    ON inv.enrollmentId = enr.Id
+                INNER JOIN students AS stu
+                    ON enr.studentId = stu.Id
+                WHERE inv.id = invoice_id;
             END
         ');
     }
