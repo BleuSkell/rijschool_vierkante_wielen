@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="flex flex-col mt-4">
-                        <h2 class="bg-gray-200 px-4 py-2 font-bold">
+                        <h2 class="bg-gray-200 px-4 py-2 font-bold text-black">
                             Inschrijvings details
                         </h2>
 
@@ -37,21 +37,21 @@
                             </p>
 
                             <p>
-                                startdatum: {{ $invoice[0]->startDate }}
+                                Startdatum: {{ $invoice[0]->startDate }}
                             </p>
 
                             <p>
-                                einddatum: {{ $invoice[0]->endDate }}
+                                Einddatum: {{ $invoice[0]->endDate }}
                             </p>
 
                             <p>
-                                pakket: {{ $invoice[0]->enrollmentNote }}
+                                Pakket: {{ $invoice[0]->enrollmentNote }}
                             </p>
                         </div>
                     </div>
 
                     <div class="flex flex-col mt-4">
-                        <h3 class="bg-gray-200 px-4 py-2 font-bold">
+                        <h3 class="bg-gray-200 px-4 py-2 font-bold text-black">
                             Kosten
                         </h3>
 
@@ -71,7 +71,10 @@
                     </div>
 
                     <div class="flex flex-row justify-between p-4">
-                        <a href="" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <a href="" class="
+                            bg-[#B9A359] text-white font-bold py-2 px-4 rounded
+                            hover:bg-[#867233] transition duration-150 ease-in-out    
+                        ">
                             Bewerken
                         </a>
 
@@ -79,7 +82,12 @@
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            <button 
+                                type="submit" 
+                                class="
+                                    bg-red-600 text-white font-bold py-2 px-4 rounded
+                                    hover:bg-red-700 transition duration-150 ease-in-out
+                                ">
                                 Verwijderen
                             </button>
                         </form>
