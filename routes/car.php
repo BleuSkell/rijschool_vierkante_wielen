@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PersonController;
+use App\Http\Controllers\CarController;
 
-Route::get('/autos', function () {
-    return view('autos.index');
-})->name('autos');
+Route::get('/autos', [CarController::class, 'index'])->name('autos');
