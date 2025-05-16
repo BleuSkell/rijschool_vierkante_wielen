@@ -55,11 +55,11 @@ VALUES
 ('Ford', 'Focus', '63-TH-BR', 'Electric', true, 'Company car', NOW(), NOW()),
 ('BMW', '3 Series', '58-NF-KS', 'Hybrid', true, 'Company car', NOW(), NOW()),
 ('Audi', 'A4', 'TN-FR-90', 'Petrol', true, 'Company car', NOW(), NOW()),
-('Mercedes', 'C-Class', 'PQR-678', 'Diesel', true, 'Company car', NOW(), NOW()),
-('Volkswagen', 'Golf', 'STU-901', 'Electric', true, 'Company car', NOW(), NOW()),
-('Tesla', 'Model 3', 'VWX-234', 'Electric', true, 'Company car', NOW(), NOW()),
-('Hyundai', 'Elantra', 'YZA-567', 'Petrol', true, 'Company car', NOW(), NOW()),
-('Kia', 'Optima', 'BCD-890', 'Diesel', true, 'Company car', NOW(), NOW());
+('Mercedes', 'C-Class', 'PR-DR-80', 'Diesel', true, 'Company car', NOW(), NOW()),
+('Volkswagen', 'Golf', '43-TJ-LK', 'Electric', true, 'Company car', NOW(), NOW()),
+('Tesla', 'Model 3', '56-TM-EO', 'Electric', true, 'Company car', NOW(), NOW()),
+('Hyundai', 'Elantra', '24-HE-KH', 'Petrol', true, 'Company car', NOW(), NOW()),
+('Kia', 'Optima', '36-KO-OA', 'Diesel', true, 'Company car', NOW(), NOW());
 
 -- Table: instructors
 INSERT INTO instructors (userId, number, isActive, note, dateCreated, dateModified)

@@ -63,7 +63,7 @@ class CarSeeder extends Seeder
             [
                 'brand' => 'Mercedes',
                 'model' => 'C-Class',
-                'licensePlate' => 'PQR-678',
+                'licensePlate' => 'PR-DR-80',
                 'fuelType' => 'Diesel',
                 'isActive' => true,
                 'note' => 'Company car',
@@ -73,7 +73,7 @@ class CarSeeder extends Seeder
             [
                 'brand' => 'Volkswagen',
                 'model' => 'Golf',
-                'licensePlate' => 'STU-901',
+                'licensePlate' => '43-TJ-LK',
                 'fuelType' => 'Electric',
                 'isActive' => true,
                 'note' => 'Company car',
@@ -83,7 +83,7 @@ class CarSeeder extends Seeder
             [
                 'brand' => 'Tesla',
                 'model' => 'Model 3',
-                'licensePlate' => 'VWX-234',
+                'licensePlate' => '56-TM-EO',
                 'fuelType' => 'Electric',
                 'isActive' => true,
                 'note' => 'Company car',
@@ -93,7 +93,7 @@ class CarSeeder extends Seeder
             [
                 'brand' => 'Hyundai',
                 'model' => 'Elantra',
-                'licensePlate' => 'YZA-567',
+                'licensePlate' => '24-HE-KH',
                 'fuelType' => 'Petrol',
                 'isActive' => true,
                 'note' => 'Company car',
@@ -103,7 +103,7 @@ class CarSeeder extends Seeder
             [
                 'brand' => 'Kia',
                 'model' => 'Optima',
-                'licensePlate' => 'BCD-890',
+                'licensePlate' => '36-KO-OA',
                 'fuelType' => 'Diesel',
                 'isActive' => true,
                 'note' => 'Company car',
