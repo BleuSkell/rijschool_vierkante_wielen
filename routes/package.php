@@ -1,6 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Packagecontroller;
+use App\Http\Controllers\PackageController;
 
-Route::get('/rijlespakket', [Packagecontroller::class, 'index'])->name('rijlespakket.index');
+Route::get('/rijlespakket', [PackageController::class, 'index'])->name('rijlespakket.index');
