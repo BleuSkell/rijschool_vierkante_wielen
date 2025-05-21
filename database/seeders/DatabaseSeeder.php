@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         ]);
         
         User::factory(9)->create();
-        $this->call(CarSeeder::class);
+        $this->call([
+            CarSeeder::class,
+            PackageSeeder::class,
+        ]);
     }
 }
