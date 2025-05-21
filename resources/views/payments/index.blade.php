@@ -5,7 +5,10 @@
                 @if ($payments)
                     @foreach ($payments as $payment)
                         <div class="flex flex-col bg-white p-2 rounded-lg shadow-md mt-4 mb-4">
-                            <div class="flex flex-row justify-between mb-2">
+                            <div class="
+                                flex lg:flex-row lg:justify-between
+                                flex-col mb-2
+                            ">
                                 <div>
                                     <h1>Betaling voor factuur: {{ $payment->invoiceNumber }}</h1>
                                     <p>Status: {{ $payment->status }}</p>
