@@ -9,28 +9,35 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="font-sans antialiased text-white">
+        <div class="min-h-screen bg-[#2C2B29]">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white shadow">
+                <header class="bg-[#8C2C29] text-white shadow-lg">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+                        <h2 class="font-semibold text-xl leading-tight">
+                            {{ $header }}
+                        </h2>
                     </div>
                 </header>
             @endisset
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
+            <main class="py-12">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div class="bg-[#785A46] text-white rounded-lg shadow-md p-6">
+                        {{ $slot }}
+                    </div>
+                </div>
             </main>
+            @include('components.footer')
         </div>
     </body>
 </html>
