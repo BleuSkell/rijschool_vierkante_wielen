@@ -99,28 +99,20 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.index')">
+                {{ __('Meldingen') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('drivinglessons.index')" :active="request()->routeIs('drivinglessons.index')">
+                {{ __('Rijlessen') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('autos')" :active="request()->routeIs('autos')">
                 {{ __('Autos') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('rijlespakket.index')" :active="request()->routeIs('rijlespakket.index')">
+                {{ __('Rijlespakket') }}
             </x-responsive-nav-link>
         </div>
 
