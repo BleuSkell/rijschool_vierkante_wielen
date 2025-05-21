@@ -20,7 +20,7 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-[#8C2C29] text-white shadow-lg">
+                <header class="bg-[#B9A359] text-white shadow-lg">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         <h2 class="font-semibold text-xl leading-tight">
                             {{ $header }}
@@ -30,13 +30,10 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-[#785A46] text-white rounded-lg shadow-md p-6">
-                        {{ $slot }}
-                    </div>
-                </div>
+            <main>
+                {{ $slot }}
             </main>
+            
             @include('components.footer')
         </div>
     </body>
