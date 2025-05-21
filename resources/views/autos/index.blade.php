@@ -8,11 +8,19 @@
         Auto's
     </h1>
 
+
     <p class="text-white border border-gray-700 rounded-lg p-4 mt-6 bg-gray-900" style="max-width: 50rem; margin-left: auto; margin-right: auto;">
         Welkom bij Rijschool Vierkante Wielen! Wij zijn trots om onze diverse en goed onderhouden vloot van lesauto's aan te bieden. Onze auto's zijn speciaal geselecteerd om jou de beste rijervaring te bieden. Of je nu een beginner bent of al wat ervaring hebt, wij hebben de juiste auto voor jou.
         Onze instructeurs zijn ervaren en gecertificeerd, en ze zorgen ervoor dat je je op je gemak voelt in de auto. Veiligheid staat bij ons voorop, en daarom zorgen we ervoor dat al onze voertuigen regelmatig worden onderhouden en gecontroleerd. We willen dat jij met vertrouwen de weg op gaat, en dat begint met een betrouwbare lesauto.
         Neem een kijkje in onze vloot en ontdek welke auto het beste bij jou past. Of je nu kiest voor een compacte hatchback of een ruime SUV, wij hebben de perfecte auto voor jouw rijopleiding. Bij Rijschool Vierkante Wielen zorgen we ervoor dat je niet alleen leert rijden, maar ook plezier hebt tijdens het proces.
     </p>
+
+    <div class="flex justify-end" style="max-width: 50rem; margin-left: auto; margin-right: auto;">
+        <a href="{{ route('autos.create') }}" 
+           class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 mb-2 transition duration-200">
+            Auto toevoegen
+        </a>
+    </div>
 
     <div class="overflow-x-auto mt-10 flex justify-center">
         <table class="w-full max-w-3xl bg-gray-900 text-white rounded-lg shadow-lg">

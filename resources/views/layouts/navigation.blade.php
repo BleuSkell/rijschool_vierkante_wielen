@@ -1,7 +1,9 @@
 <nav x-data="{ open: false }" class="border-b border-[#B9A359]">
+    <!-- Primary Navigation Menu -->
     <div class="bg-[#242424]">
         <div class="flex justify-between h-16">
             <div class="flex">
+                <!-- Logo -->
                 <div class="shrink-0 flex items-center text-center ml-4 text-white">
                     <a href="{{ route('home') }}">
                         <div>
@@ -13,28 +15,44 @@
             </div>
 
             <div class="flex">
+                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    @auth
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
-                        {{ __('User Profiles') }}
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.index')">
+                        {{ __('Meldingen') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('instructors.index')" :active="request()->routeIs('instructors.index')">
-                        {{ __('Instructors') }}
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('drivinglessons.index')" :active="request()->routeIs('drivinglessons.index')">
+                        {{ __('Rijlessen') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
-                        {{ __('Students') }}
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('autos')" :active="request()->routeIs('autos')">
+                        {{ __('Autos') }}
                     </x-nav-link>
-                    @endauth
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('rijlespakket.index')" :active="request()->routeIs('rijlespakket.index')">
+                        {{ __('RijLes Pakket') }}
+                    </x-nav-link>
                 </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @auth
+                    <!-- Logout -->
                     <div class="flex items-center mr-2">
-                        <form methodaction="{{ route('logout') }}">
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
                             <x-nav-link :href="route('logout')"
@@ -62,6 +80,7 @@
                 @endauth
             </div>
 
+            <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden mr-1">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-[#B9A359] focus:outline-none focus:bg-[#B9A359] focus:text-white transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="white" fill="none" viewBox="0 0 24 24">
@@ -73,43 +92,36 @@
         </div>
     </div>
 
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+    <!-- Responsive Navigation Menu -->
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.index')">
+                {{ __('Meldingen') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('drivinglessons.index')" :active="request()->routeIs('drivinglessons.index')">
+                {{ __('Rijlessen') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('autos')" :active="request()->routeIs('autos')">
                 {{ __('Autos') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
-                {{ __('User Profiles') }}
+            <x-responsive-nav-link :href="route('rijlespakket.index')" :active="request()->routeIs('rijlespakket.index')">
+                {{ __('Rijlespakket') }}
             </x-responsive-nav-link>
         </div>
 
+        <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-[#B9A359]">
             @auth
+                <!-- Logout -->
                 <div class="flex items-center mr-2">
+                    <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 

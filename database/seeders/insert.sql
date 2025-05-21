@@ -20,7 +20,7 @@ VALUES
 (10, 'Admin', true, 'Administrator role', NOW(), NOW());
 
 -- Table: notifications
-INSERT INTO notifications (userId, targetGroup, message, notificationType, date, is_active, note, dateCreated, dateModified)
+INSERT INTO notifications (userId, targetGroup, message, notificationType, date, isActive, note, dateCreated, dateModified)
 VALUES
 (1, 'Students', 'Welcome to the platform!', 'Info', NOW(), true, NULL, NOW(), NOW()),
 (2, 'Instructors', 'Meeting scheduled', 'Alert', NOW(), true, NULL, NOW(), NOW()),
