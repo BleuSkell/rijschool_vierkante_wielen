@@ -18,11 +18,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('Password123'),
         ]);
-        
-        User::factory(9)->create();
-        $this->call([
-            CarSeeder::class,
-            PackageSeeder::class,
-        ]);
-    }
+           }
 }
