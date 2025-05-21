@@ -53,18 +53,6 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('autos')" :active="request()->routeIs('autos')">
                         {{ __('Autos') }}
                     </x-nav-link>
@@ -82,7 +70,7 @@
                     <!-- Logout -->
                     <div class="flex items-center mr-2">
                         <!-- Authentication -->
-                        <form methodaction="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
                             <x-nav-link :href="route('logout')"
