@@ -15,9 +15,12 @@ return new class extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_get_all_invoices');
 
         DB::unprepared('
-            CREATE PROCEDURE sp_get_all_invoices()
+            CREATE PROCEDURE sp_get_all_invoices(
+                IN p_limit INT, IN p_offset INT
+            )
             BEGIN
-                SELECT * FROM invoices;
+                SELECT * FROM invoices
+                LIMIT p_limit OFFSET p_offset;
             END
         ');
     }

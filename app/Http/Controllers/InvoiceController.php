@@ -4,14 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class InvoiceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {   
-        $invoices = DB::select('CALL sp_get_all_invoices()');
+        $perPage = 5;
+        $page = $request->input('page', 1);
+        $offset = ($page - 1) * $perPage;
 
-        return view('invoices.index', compact('invoices'));
+        $total = DB::table('invoices')->count();
+
+        $invoices = DB::select('CALL sp_get_all_invoices(?, ?)', [$perPage, $offset]);
+
+        $paginatedInvoices = new LengthAwarePaginator(
+            $invoices,
+            $total,
+            $perPage,
+            $page,
+            ['path' => url()->current(), 'query' => $request->query()]
+        );
+
+        return view('invoices.index', ['invoices' => $paginatedInvoices]);
     }
 
     public function show($id)
