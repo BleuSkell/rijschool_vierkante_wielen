@@ -43,6 +43,30 @@
                             </div>
                         </div>
                     @endforeach
+
+                    <div class="flex justify-center mt-6">
+                        <nav class="inline-flex">
+                            @if ($payments->onFirstPage())
+                                <span class="px-3 py-1 bg-gray-300 text-gray-500 rounded-l">Vorige</span>
+                            @else
+                                <a href="{{ $payments->previousPageUrl() }}" class="px-3 py-1 bg-[#B9A359] text-white rounded-l hover:bg-yellow-700">Vorige</a>
+                            @endif
+
+                            @foreach ($payments->getUrlRange(1, $payments->lastPage()) as $page => $url)
+                                @if ($page == $payments->currentPage())
+                                    <span class="px-3 py-1 bg-[#B9A359] text-white">{{ $page }}</span>
+                                @else
+                                    <a href="{{ $url }}" class="px-3 py-1 bg-white text-[#B9A359] hover:bg-yellow-100">{{ $page }}</a>
+                                @endif
+                            @endforeach
+
+                            @if ($payments->hasMorePages())
+                                <a href="{{ $payments->nextPageUrl() }}" class="px-3 py-1 bg-[#B9A359] text-white rounded-r hover:bg-yellow-700">Volgende</a>
+                            @else
+                                <span class="px-3 py-1 bg-gray-300 text-gray-500 rounded-r">Volgende</span>
+                            @endif
+                        </nav>
+                    </div>
                 @else   
                     <h1 class="text-center font-bold text-lg tracking-wide">
                         Er zijn op dit moment geen betalingen beschikbaar
