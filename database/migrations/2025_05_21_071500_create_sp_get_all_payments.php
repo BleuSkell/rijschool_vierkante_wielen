@@ -16,7 +16,19 @@ return new class extends Migration
         DB::unprepared('
             CREATE PROCEDURE sp_get_all_payments()
             BEGIN
-                SELECT * FROM payments;
+                SELECT  pay.Id AS paymentId
+                        ,pay.invoiceId AS paymentInvoiceId
+                        ,pay.date
+                        ,pay.status
+                        ,pay.note
+                        ,inv.Id AS invoiceId
+                        ,inv.invoiceNumber
+                        ,inv.amountExcBtw
+                        ,inv.btw
+                        ,inv.amountIncBtw
+                FROM payments AS pay
+                INNER JOIN invoices AS inv
+                    ON pay.invoiceId = inv.Id;
             END
         ');
     }
