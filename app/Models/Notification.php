@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
+
 class Notification extends Model
 {
     protected $table = 'notifications';
@@ -20,4 +21,5 @@ class Notification extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }
