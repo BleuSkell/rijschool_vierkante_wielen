@@ -4,26 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DrivingLesson;
-use Illuminate\Support\Facades\Auth;
 
 class DrivingLessonController extends Controller
 {
+    /**
+     * Display a list of all available driving lessons.
+     */
     public function index()
     {
-        // Assuming student is related through enrollment
-        $studentId = Auth::user()->student->id ?? null;
+        // Fetch all active driving lessons
+        $lessons = DrivingLesson::with(['enrollment', 'instructor', 'car'])
+                                ->where('isActive', true)
+                                ->orderBy('startDate', 'desc')
+                                ->paginate(5);
 
-        if (!$studentId) {
-            return redirect()->back()->with('error', 'Geen toegang tot rijlessen.');
+        // Scenario: Administrator ziet geen meldingen
+        if ($lessons->isEmpty()) {
+            session()->flash('message', 'Geen meldingen gevonden');
         }
 
-        $drivingLessons = DrivingLesson::whereHas('enrollment', function ($query) use ($studentId) {
-            $query->where('studentId', $studentId);
-        })->where('isActive', true)
-          ->orderBy('startDate', 'asc')
-          ->paginate(5);
-
-        return view('driving_lessons.index', compact('drivingLessons'));
+        // Scenario: Administrator bekijkt beschikbare meldingen
+        return view('drivinglessons.index', compact('lessons'));
     }
 }
-

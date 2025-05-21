@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\drivelessonController;
+use App\Http\Controllers\DrivingLessonController;
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/driving-lessons', [DrivingLessonController::class, 'index'])->name('driving-lessons.index');
+
+
+Route::middleware(['auth', ])->group(function () {
+    Route::get('/rijlessen', [DrivingLessonController::class, 'index'])->name('drivinglessons.index');
 });
