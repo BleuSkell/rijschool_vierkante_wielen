@@ -1,9 +1,7 @@
 <nav x-data="{ open: false }" class="border-b border-[#B9A359]">
-    <!-- Primary Navigation Menu -->
     <div class="bg-[#242424]">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
                 <div class="shrink-0 flex items-center text-center ml-4 text-white">
                     <a href="{{ route('home') }}">
                         <div>
@@ -15,7 +13,6 @@
             </div>
 
             <div class="flex">
-                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @auth
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -36,9 +33,7 @@
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @auth
-                    <!-- Logout -->
                     <div class="flex items-center mr-2">
-                        <!-- Authentication -->
                         <form methodaction="{{ route('logout') }}">
                             @csrf
 
@@ -67,7 +62,6 @@
                 @endauth
             </div>
 
-            <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden mr-1">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-[#B9A359] focus:outline-none focus:bg-[#B9A359] focus:text-white transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="white" fill="none" viewBox="0 0 24 24">
@@ -79,7 +73,6 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
@@ -114,13 +107,9 @@
             </x-responsive-nav-link>
         </div>
 
-
-        <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-[#B9A359]">
             @auth
-                <!-- Logout -->
                 <div class="flex items-center mr-2">
-                    <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
