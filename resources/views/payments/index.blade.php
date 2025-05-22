@@ -4,7 +4,7 @@
             <div class="bg-gray-200 overflow-hidden shadow-sm rounded-lg px-5 py-2 w-96 lg:w-full border border-solid border-4 border-[#B9A359]">
                 @if ($payments)
                     @foreach ($payments as $payment)
-                        <div class="flex flex-col bg-white p-2 rounded-lg shadow-md mt-4 mb-4">
+                        <div class="flex flex-col bg-white p-2 rounded-lg shadow-md mt-4 mb-4 text-black">
                             <div class="
                                 flex lg:flex-row lg:justify-between
                                 flex-col mb-2
@@ -68,7 +68,7 @@
                         </nav>
                     </div>
                 @else   
-                    <h1 class="text-center font-bold text-lg tracking-wide">
+                    <h1 class="text-center font-bold text-lg tracking-wide text-black">
                         Er zijn op dit moment geen betalingen beschikbaar
                     </h1>
                 @endif

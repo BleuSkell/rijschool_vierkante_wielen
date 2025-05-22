@@ -60,7 +60,13 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('rijlespakket.index')" :active="request()->routeIs('rijlespakket.index')">
-                        {{ __('RijLes Pakket') }}
+                        {{ __('Rijlespakket') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.index')">
+                        {{ __('Betalingen') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -143,6 +149,10 @@
 
             <x-responsive-nav-link :href="route('rijlespakket.index')" :active="request()->routeIs('rijlespakket.index')">
                 {{ __('Rijlespakket') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.index')">
+                {{ __('Betalingen') }}
             </x-responsive-nav-link>
         </div>
 

@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="bg-gray-900 min-h-screen py-10">
-        <div class="max-w-4xl mx-auto px-4">
+        <div class="max-w-4xl mx-auto px-4 text-black">
             <h2 class="text-center text-white text-2xl font-bold mb-2">Overzicht Rijlessen</h2>
 
             {{-- Golden Line Separator --}}
