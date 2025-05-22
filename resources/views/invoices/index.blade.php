@@ -2,7 +2,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-row justify-center">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg p-4 w-96 lg:w-full">
-                @if ($invoices)
+                @if ($invoices->count())
                     @foreach ($invoices as $invoice)
                         <div class="
                                 flex 
@@ -61,35 +61,35 @@
                             </div>
                         </div>
                     @endforeach
-
-                    <div class="flex justify-center mt-6">
-                        <nav class="inline-flex">
-                            @if ($invoices->onFirstPage())
-                                <span class="px-3 py-1 bg-gray-300 text-gray-500 rounded-l">Vorige</span>
-                            @else
-                                <a href="{{ $invoices->previousPageUrl() }}" class="px-3 py-1 bg-[#B9A359] text-white rounded-l hover:bg-yellow-700">Vorige</a>
-                            @endif
-
-                            @foreach ($invoices->getUrlRange(1, $invoices->lastPage()) as $page => $url)
-                                @if ($page == $invoices->currentPage())
-                                    <span class="px-3 py-1 bg-[#B9A359] text-white">{{ $page }}</span>
-                                @else
-                                    <a href="{{ $url }}" class="px-3 py-1 bg-white text-[#B9A359] hover:bg-yellow-100">{{ $page }}</a>
-                                @endif
-                            @endforeach
-
-                            @if ($invoices->hasMorePages())
-                                <a href="{{ $invoices->nextPageUrl() }}" class="px-3 py-1 bg-[#B9A359] text-white rounded-r hover:bg-yellow-700">Volgende</a>
-                            @else
-                                <span class="px-3 py-1 bg-gray-300 text-gray-500 rounded-r">Volgende</span>
-                            @endif
-                        </nav>
-                    </div>
                 @else   
-                    <h1 class="text-center font-bold text-lg tracking-wide text-black">
+                    <h1 class="text-center text-black mt-4 font-bold text-lg">
                         Er zijn op dit moment geen facturen beschikbaar
                     </h1>
                 @endif
+
+                <div class="flex justify-center mt-6">
+                    <nav class="inline-flex">
+                        @if ($invoices->onFirstPage())
+                            <span class="px-3 py-1 bg-gray-300 text-gray-500 rounded-l">Vorige</span>
+                        @else
+                            <a href="{{ $invoices->previousPageUrl() }}" class="px-3 py-1 bg-[#B9A359] text-white rounded-l hover:bg-yellow-700">Vorige</a>
+                        @endif
+
+                        @foreach ($invoices->getUrlRange(1, $invoices->lastPage()) as $page => $url)
+                            @if ($page == $invoices->currentPage())
+                                <span class="px-3 py-1 bg-[#B9A359] text-white">{{ $page }}</span>
+                            @else
+                                <a href="{{ $url }}" class="px-3 py-1 bg-white text-[#B9A359] hover:bg-yellow-100">{{ $page }}</a>
+                            @endif
+                        @endforeach
+
+                        @if ($invoices->hasMorePages())
+                            <a href="{{ $invoices->nextPageUrl() }}" class="px-3 py-1 bg-[#B9A359] text-white rounded-r hover:bg-yellow-700">Volgende</a>
+                        @else
+                            <span class="px-3 py-1 bg-gray-300 text-gray-500 rounded-r">Volgende</span>
+                        @endif
+                    </nav>
+                </div>
             </div>
         </div>
     </div>

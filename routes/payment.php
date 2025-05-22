@@ -6,5 +6,5 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsInstructor;
 
 Route::get('/betalingen', [PaymentController::class, 'index'])
-    ->middleware([IsAdmin::class, IsInstructor::class, 'auth'])
+    ->middleware([IsAdmin::class, 'auth'])
     ->name('payments.index');
