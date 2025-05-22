@@ -13,12 +13,17 @@ class Student extends Model
     protected $fillable = [
         'userId',
         'relationNumber',
+        'isActive',
         'note',
+        'dateCreated',
+        'dateModified',
     ];
+
+    public $timestamps = false;
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'userId');
     }
 
     public function enrollment()
