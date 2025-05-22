@@ -6,8 +6,9 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsInstructor;
 
 Route::get('/facturen', [InvoiceController::class, 'index'])
-    ->middleware([IsAdmin::class, IsInstructor::class])
+    ->middleware([IsAdmin::class, IsInstructor::class, 'auth'])
     ->name('invoices.index');
+
 Route::get('/facturen/{id}', [InvoiceController::class, 'show'])
-    ->middleware([IsAdmin::class, IsInstructor::class])
+    ->middleware([IsAdmin::class, IsInstructor::class, 'auth'])
     ->name('invoices.show');

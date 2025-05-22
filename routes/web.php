@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\IsInstructor;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,7 +13,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware([IsAdmin::class, 'auth'])->group(function () {
     // Profile index (list all users — usually admin-only)
     Route::get('/profiles', [ProfileController::class, 'index'])
         ->name('profile.index');
