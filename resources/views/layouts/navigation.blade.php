@@ -69,6 +69,12 @@
                         {{ __('Betalingen') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+                        {{ __('Facturen') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -153,6 +159,10 @@
 
             <x-responsive-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.index')">
                 {{ __('Betalingen') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+                {{ __('Facturen') }}
             </x-responsive-nav-link>
         </div>
 

@@ -7,7 +7,7 @@
                         <div class="
                                 flex 
                                 lg:flex-row lg:justify-between lg:p-2 lg:mb-0
-                                border-b-2 border-[#B9A359]
+                                border-b-2 border-[#B9A359] text-black
                                 flex-col items-center mb-4
                         ">
                             <div class="flex flex-row lg:mb-0 mb-2">
@@ -86,7 +86,7 @@
                         </nav>
                     </div>
                 @else   
-                    <h1 class="text-center font-bold text-lg tracking-wide">
+                    <h1 class="text-center font-bold text-lg tracking-wide text-black">
                         Er zijn op dit moment geen facturen beschikbaar
                     </h1>
                 @endif

@@ -2,7 +2,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-row justify-center">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg w-96 lg:w-full">
-                <div class="flex flex-col">
+                <div class="flex flex-col text-black">
 
                     <div class="flex flex-row justify-between p-4">
                         <div class="flex flex-col">
