@@ -51,7 +51,7 @@
                     </p>
 
                     <div class="flex justify-center md:justify-start">
-                        <a href="" class="bg-[#8C2C29] text-white px-4 py-2 rounded-md mt-4 hover:bg-[#a23a36] transition">
+                        <a href="{{ route('rijlespakket.index') }}" class="bg-[#8C2C29] text-white px-4 py-2 rounded-md mt-4 hover:bg-[#a23a36] transition">
                             Bekijk pakketten →
                         </a>
                     </div>
