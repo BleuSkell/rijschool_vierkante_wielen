@@ -1,3 +1,7 @@
+@php
+    $role = Auth::user()->role->name ?? null;
+@endphp
+
 <nav x-data="{ open: false }" class="border-b border-[#B9A359]">
     <!-- Primary Navigation Menu -->
     <div class="bg-[#242424]">
@@ -16,41 +20,45 @@
 
             <div class="flex">
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+                @auth
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
-                        {{ __('Gebruiker profielen') }}
-                    </x-nav-link>
-                </div>
+                    @if ($role === 'Admin')
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                                {{ __('Gebruiker profielen') }}
+                            </x-nav-link>
+                        </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('instructors.index')" :active="request()->routeIs('instructors.index')">
-                        {{ __('Instructeurs') }}
-                    </x-nav-link>
-                </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('instructors.index')" :active="request()->routeIs('instructors.index')">
+                                {{ __('Instructeurs') }}
+                            </x-nav-link>
+                        </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
-                        {{ __('Studenten') }}
-                    </x-nav-link>
-                </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
+                                {{ __('Studenten') }}
+                            </x-nav-link>
+                        </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.index')">
-                        {{ __('Meldingen') }}
-                    </x-nav-link>
-                </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.index')">
+                                {{ __('Meldingen') }}
+                            </x-nav-link>
+                        </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('drivinglessons.index')" :active="request()->routeIs('drivinglessons.index')">
-                        {{ __('Rijlessen') }}
-                    </x-nav-link>
-                </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('drivinglessons.index')" :active="request()->routeIs('drivinglessons.index')">
+                                {{ __('Rijlessen') }}
+                            </x-nav-link>
+                        </div>
+                    @endif
+                @endauth
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('autos')" :active="request()->routeIs('autos')">
@@ -63,18 +71,22 @@
                         {{ __('Rijlespakket') }}
                     </x-nav-link>
                 </div>
+                
+                @auth
+                    @if ($role === 'Admin')
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.index')">
+                                {{ __('Betalingen') }}
+                            </x-nav-link>
+                        </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.index')">
-                        {{ __('Betalingen') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
-                        {{ __('Facturen') }}
-                    </x-nav-link>
-                </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+                                {{ __('Facturen') }}
+                            </x-nav-link>
+                        </div>
+                    @endif
+                @endauth
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -125,29 +137,33 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            @auth
+                @if ($role === 'Admin')
+                    <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
-                {{ __('Gebruikers profielen') }}
-            </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                        {{ __('Gebruikers profielen') }}
+                    </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('instructors.index')" :active="request()->routeIs('instructors.index')">
-                {{ __('Instructeuren') }}
-            </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('instructors.index')" :active="request()->routeIs('instructors.index')">
+                        {{ __('Instructeuren') }}
+                    </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
-                {{ __('Studenten') }}
-            </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
+                        {{ __('Studenten') }}
+                    </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.index')">
-                {{ __('Meldingen') }}
-            </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.index')">
+                        {{ __('Meldingen') }}
+                    </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('drivinglessons.index')" :active="request()->routeIs('drivinglessons.index')">
-                {{ __('Rijlessen') }}
-            </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('drivinglessons.index')" :active="request()->routeIs('drivinglessons.index')">
+                        {{ __('Rijlessen') }}
+                    </x-responsive-nav-link>
+                @endif
+            @endauth
 
             <x-responsive-nav-link :href="route('autos')" :active="request()->routeIs('autos')">
                 {{ __('Autos') }}
@@ -157,13 +173,17 @@
                 {{ __('Rijlespakket') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.index')">
-                {{ __('Betalingen') }}
-            </x-responsive-nav-link>
+            @auth
+                @if ($role === 'Admin')
+                    <x-responsive-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.index')">
+                        {{ __('Betalingen') }}
+                    </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
-                {{ __('Facturen') }}
-            </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+                        {{ __('Facturen') }}
+                    </x-responsive-nav-link>
+                @endif
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->

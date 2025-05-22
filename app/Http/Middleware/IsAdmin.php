@@ -21,6 +21,6 @@ class IsAdmin
         if ($user && $user->role && $user->role->name === 'Admin') {
             return $next($request);
         }
-        abort(403, 'Toegang geweigerd: alleen voor admins.');
+        abort(403, 'Toegang geweigerd: u heeft niet de juiste rechten om deze pagina te bekijken.');
     }
 }

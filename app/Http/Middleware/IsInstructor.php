@@ -21,6 +21,6 @@ class IsInstructor
         if ($user && $user->role && $user->role->name === 'Instructor') {
             return $next($request);
         }
-        abort(403, 'Toegang geweigerd: alleen voor instructeurs.');
+        abort(403, 'Toegang geweigerd: u heeft niet de juiste rechten om deze pagina te bekijken.');
     }
 }
