@@ -9,11 +9,17 @@ class Car extends Model
 {
     protected $table = 'cars';
 
+    public $timestamps = true;
+    const CREATED_AT = 'dateCreated';
+    const UPDATED_AT = 'dateModified';
+
     protected $fillable = [
         'brand',
         'model',
         'licensePlate',
         'fuelType',
+        'isActive',
+        'note',
     ];
 
     public function drivingLesson()

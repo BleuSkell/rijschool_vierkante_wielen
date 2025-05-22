@@ -2,9 +2,83 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    //
+    // Display a listing of the students
+    public function index()
+    {
+        $students = Student::with('user')->get();
+        return view('students.index', compact('students'));
+    }
+
+    // Show the form for creating a new student
+    public function create()
+    {
+        $users = User::all(); // For selecting user in form
+        return view('students.create', compact('users'));
+    }
+
+    // Store a newly created student in storage
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'userId' => 'required|exists:users,id',
+            'relationNumber' => 'required|string|max:50',
+            'isActive' => 'boolean',
+            'note' => 'nullable|string|max:255',
+            'dateCreated' => 'nullable|date',
+            'dateModified' => 'nullable|date',
+        ]);
+
+        Student::create($validated);
+
+        return redirect()->route('students.index')->with('success', 'Student created successfully.');
+    }
+
+    // Display the specified student
+    public function show($id)
+    {
+        $student = Student::with('user')->findOrFail($id);
+        return view('students.show', compact('student'));
+    }
+
+    // Show the form for editing the specified student
+    public function edit($id)
+    {
+        $student = Student::findOrFail($id);
+        $users = User::all();
+        return view('students.edit', compact('student', 'users'));
+    }
+
+    // Update the specified student in storage
+    public function update(Request $request, $id)
+    {
+        $student = Student::findOrFail($id);
+
+        $validated = $request->validate([
+            'userId' => 'sometimes|exists:users,id',
+            'relationNumber' => 'sometimes|string|max:50',
+            'isActive' => 'boolean',
+            'note' => 'nullable|string|max:255',
+            'dateCreated' => 'nullable|date',
+            'dateModified' => 'nullable|date',
+        ]);
+
+        $student->update($validated);
+
+        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
+    }
+
+    // Remove the specified student from storage
+    public function destroy($id)
+    {
+        $student = Student::findOrFail($id);
+        $student->delete();
+
+        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+    }
 }
