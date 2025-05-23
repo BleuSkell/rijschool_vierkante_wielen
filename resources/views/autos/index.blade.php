@@ -70,7 +70,7 @@
     </div>
 
         <h1 class="text-center text-4xl font-bold border border-gray-700 rounded-lg p-4" style="max-width: 50rem; margin-left: auto; margin-right: auto; margin-top: 2rem; color: white; background-color: black;">
-        Starter autos
+        Voorbeeld Auto's
         </h1>
     <h1 class="text-center text-4xl font-bold border border-gray-700 rounded-lg p-4" style="max-width: 50rem; margin-left: auto; margin-right: auto; margin-top: 2rem; color: white; background-color: black;">
         Toyota Corrola 2002
