@@ -29,8 +29,8 @@
 
                         <div class="mb-4">
                             <label for="relationNumber" class="block text-sm font-medium text-gray-700">Relation Number</label>
-                            <input type="text" name="relationNumber" id="relationNumber" value="{{ old('relationNumber') }}" 
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-black">
+                            <input type="text" name="relationNumber" id="relationNumber" value="{{ old('relationNumber', $nextNumber) }}" 
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-black bg-gray-100" readonly>
                             @error('relationNumber')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror

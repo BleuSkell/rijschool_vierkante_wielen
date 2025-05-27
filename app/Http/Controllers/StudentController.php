@@ -22,8 +22,23 @@ class StudentController extends Controller
     // Show the form for creating a new student
     public function create()
     {
-        $users = User::all(); // For selecting user in form
-        return view('students.create', compact('users'));
+        $users = User::all();
+        
+        $existingNumbers = Student::pluck('relationNumber')->toArray();
+        
+        // Extract numeric parts and find the lowest available slot
+        $existingInts = array_map(function ($number) {
+            return (int) str_replace('STU-', '', $number);
+        }, $existingNumbers);
+        
+        $lowest = 1;
+        while (in_array($lowest, $existingInts)) {
+            $lowest++;
+        }
+        
+        $nextNumber = 'STU-' . str_pad($lowest, 3, '0', STR_PAD_LEFT);
+        
+        return view('students.create', compact('users', 'nextNumber'));
     }
 
     // Store a newly created student in storage
@@ -31,7 +46,7 @@ class StudentController extends Controller
     {
         $validated = $request->validate([
             'userId' => 'required|exists:users,id',
-            'relationNumber' => 'required|string|max:50',
+            'relationNumber' => 'required|string|max:50|unique:students,relationNumber|regex:/^STU-\d{3}$/',
             'isActive' => 'boolean',
             'note' => 'nullable|string|max:255',
         ]);
@@ -66,7 +81,13 @@ class StudentController extends Controller
 
         $validated = $request->validate([
             'userId' => 'sometimes|exists:users,id',
-            'relationNumber' => 'sometimes|string|max:50',
+            'relationNumber' => [
+                'sometimes',
+                'string',
+                'max:50',
+                'regex:/^STU-\d{3}$/',
+                'unique:students,relationNumber,' . $id
+            ],
             'isActive' => 'boolean',
             'note' => 'nullable|string|max:255',
         ]);
