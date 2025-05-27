@@ -12,8 +12,12 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        $instructors = Instructor::all();
-        return view('instructors.index', compact('instructors'));
+        try {
+            $instructors = Instructor::all();
+            return view('instructors.index', compact('instructors'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Unable to retrieve instructors: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -52,10 +56,10 @@ class InstructorController extends Controller
             'number' => 'required|string|max:50|unique:instructors,number',
             'isActive' => 'boolean',
             'note' => 'nullable|string|max:255',
-            'dateCreated' => 'nullable|date',
-            'dateModified' => 'nullable|date',
         ]);
 
+        $validated['dateCreated'] = now();
+        $validated['dateModified'] = now();
 
         Instructor::create($validated);
 
@@ -92,9 +96,9 @@ class InstructorController extends Controller
             'number' => 'sometimes|string|max:50',
             'isActive' => 'sometimes|boolean',
             'note' => 'nullable|string|max:255',
-            'dateCreated' => 'nullable|date',
-            'dateModified' => 'nullable|date',
         ]);
+
+        $validated['dateModified'] = now();
 
         $instructor->update($validated);
 

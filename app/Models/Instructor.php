@@ -10,11 +10,16 @@ use App\Models\DrivingLesson;
 class Instructor extends Model
 {
     protected $table = 'instructors';
+    
+    public $timestamps = false;
 
     protected $fillable = [
         'userId',
         'number',
+        'isActive',
         'note',
+        'dateCreated',
+        'dateModified'
     ];
 
     public function user()

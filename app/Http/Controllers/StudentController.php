@@ -11,8 +11,12 @@ class StudentController extends Controller
     // Display a listing of the students
     public function index()
     {
-        $students = Student::with('user')->get();
-        return view('students.index', compact('students'));
+        try {
+            $students = Student::with('user')->get();
+            return view('students.index', compact('students'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Unable to retrieve students: ' . $e->getMessage());
+        }
     }
 
     // Show the form for creating a new student
@@ -30,9 +34,10 @@ class StudentController extends Controller
             'relationNumber' => 'required|string|max:50',
             'isActive' => 'boolean',
             'note' => 'nullable|string|max:255',
-            'dateCreated' => 'nullable|date',
-            'dateModified' => 'nullable|date',
         ]);
+
+        $validated['dateCreated'] = now();
+        $validated['dateModified'] = now();
 
         Student::create($validated);
 
@@ -64,9 +69,9 @@ class StudentController extends Controller
             'relationNumber' => 'sometimes|string|max:50',
             'isActive' => 'boolean',
             'note' => 'nullable|string|max:255',
-            'dateCreated' => 'nullable|date',
-            'dateModified' => 'nullable|date',
         ]);
+
+        $validated['dateModified'] = now();
 
         $student->update($validated);
 
