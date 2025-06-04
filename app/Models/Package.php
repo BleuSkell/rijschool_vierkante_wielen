@@ -9,11 +9,19 @@ class Package extends Model
 {
     protected $table = 'packages';
 
+    // Gebruik aangepaste timestamp kolommen
+    public $timestamps = true;
+    const CREATED_AT = 'dateCreated';
+    const UPDATED_AT = 'dateModified';
+
     protected $fillable = [
         'type',
         'numberOfLessons',
         'pricePerLesson',
+        'isActive',
         'note',
+        'dateCreated',
+        'dateModified',
     ];
 
     public function enrollments()
