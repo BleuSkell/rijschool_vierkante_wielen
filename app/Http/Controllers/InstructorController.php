@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Instructor;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InstructorController extends Controller
 {
@@ -13,8 +15,8 @@ class InstructorController extends Controller
     public function index()
     {
         try {
-            $instructors = Instructor::all();
-            return view('instructors.index', compact('instructors'));
+            $instructors = DB::select('CALL sp_get_all_instructors()');
+            return view('instructors.index', ['instructors' => $instructors]);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Unable to retrieve instructors: ' . $e->getMessage());
         }
@@ -25,23 +27,15 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        $users = \App\Models\User::all();
+        try {
+            $users = User::all();
+            $result = DB::select('CALL sp_get_next_instructor_number()');
+            $nextNumber = $result[0]->next_number;
 
-        $existingNumbers = Instructor::pluck('number')->toArray();
-
-        // Extract numeric parts and find the lowest available slot
-        $existingInts = array_map(function ($number) {
-            return (int) str_replace('INST-', '', $number);
-        }, $existingNumbers);
-
-        $lowest = 1;
-        while (in_array($lowest, $existingInts)) {
-            $lowest++;
+            return view('instructors.create', compact('users', 'nextNumber'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Unable to load instructor creation form: ' . $e->getMessage());
         }
-
-        $nextNumber = 'INST-' . str_pad($lowest, 3, '0', STR_PAD_LEFT);
-
-        return view('instructors.create', compact('users', 'nextNumber'));
     }
 
 
@@ -51,19 +45,25 @@ class InstructorController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'userId' => 'required|exists:users,id',
-            'number' => 'required|string|max:50|unique:instructors,number',
-            'isActive' => 'boolean',
-            'note' => 'nullable|string|max:255',
-        ]);
+        try {
+            $validated = $request->validate([
+                'userId' => 'required|exists:users,id',
+                'number' => 'required|string|max:50|unique:instructors,number',
+                'isActive' => 'boolean',
+                'note' => 'nullable|string|max:255',
+            ]);
 
-        $validated['dateCreated'] = now();
-        $validated['dateModified'] = now();
+            DB::select('CALL sp_create_instructor(?, ?, ?, ?)', [
+                $validated['userId'],
+                $validated['number'],
+                $validated['isActive'] ?? true,
+                $validated['note']
+            ]);
 
-        Instructor::create($validated);
-
-        return redirect()->route('instructors.index')->with('success', 'Instructor created successfully.');
+            return redirect()->route('instructors.index')->with('success', 'Instructor created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Unable to create instructor: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -71,8 +71,15 @@ class InstructorController extends Controller
      */
     public function show($id)
     {
-        $instructor = Instructor::findOrFail($id);
-        return view('instructors.show', compact('instructor'));
+        try {
+            $result = DB::select('CALL sp_get_instructor_by_id(?)', [$id]);
+            if (empty($result)) {
+                abort(404);
+            }
+            return view('instructors.show', ['instructor' => $result[0]]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Unable to retrieve instructor: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -80,8 +87,15 @@ class InstructorController extends Controller
      */
     public function edit($id)
     {
-        $instructor = Instructor::findOrFail($id);
-        return view('instructors.edit', compact('instructor'));
+        try {
+            $result = DB::select('CALL sp_get_instructor_by_id(?)', [$id]);
+            if (empty($result)) {
+                abort(404);
+            }
+            return view('instructors.edit', ['instructor' => $result[0]]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Unable to load instructor edit form: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -89,20 +103,25 @@ class InstructorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $instructor = Instructor::findOrFail($id);
+        try {
+            $validated = $request->validate([
+                'userId' => 'sometimes|exists:users,id',
+                'number' => 'sometimes|string|max:50',
+                'isActive' => 'sometimes|boolean',
+                'note' => 'nullable|string|max:255',
+            ]);
 
-        $validated = $request->validate([
-            'userId' => 'sometimes|exists:users,id',
-            'number' => 'sometimes|string|max:50',
-            'isActive' => 'sometimes|boolean',
-            'note' => 'nullable|string|max:255',
-        ]);
+            DB::select('CALL sp_update_instructor(?, ?, ?, ?)', [
+                $id,
+                $validated['number'],
+                $validated['isActive'] ?? true,
+                $validated['note']
+            ]);
 
-        $validated['dateModified'] = now();
-
-        $instructor->update($validated);
-
-        return redirect()->route('instructors.index')->with('success', 'Instructor updated successfully.');
+            return redirect()->route('instructors.index')->with('success', 'Instructor updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Unable to update instructor: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -110,9 +129,11 @@ class InstructorController extends Controller
      */
     public function destroy($id)
     {
-        $instructor = Instructor::findOrFail($id);
-        $instructor->delete();
-
-        return redirect()->route('instructors.index')->with('success', 'Instructor deleted successfully.');
+        try {
+            DB::select('CALL sp_delete_instructor(?)', [$id]);
+            return redirect()->route('instructors.index')->with('success', 'Instructor deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Unable to delete instructor: ' . $e->getMessage());
+        }
     }
 }
