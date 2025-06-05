@@ -37,8 +37,13 @@ class InvoiceController extends Controller
     }
 
     public function create()
-    {
-        return view('invoices.create');
+    {   
+        $students = DB::table('users')
+            ->join('students', 'users.id', '=', 'students.userId')
+            ->select('users.*', 'students.*')
+            ->get();
+
+        return view('invoices.create', compact('students'));
     }
 
     public function store(Request $request)
