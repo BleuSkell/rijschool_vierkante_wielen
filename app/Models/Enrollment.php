@@ -9,7 +9,7 @@ use App\Models\Exam;
 use App\Models\Invoice;
 use App\Models\DrivingLesson;
 
-class Entollment extends Model
+class Enrollment extends Model
 {
     protected $table = 'enrollments';
 
@@ -23,7 +23,7 @@ class Entollment extends Model
 
     public function student()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Student::class, 'studentId');
     }
 
     public function package()

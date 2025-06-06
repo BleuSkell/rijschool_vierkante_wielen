@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Student;
 
 class InvoiceController extends Controller
 {
@@ -36,11 +37,18 @@ class InvoiceController extends Controller
         return view('invoices.show', compact('invoice'));
     }
 
+    public function getStudentDetails($studentId)
+    {
+        $details = DB::select('CALL sp_get_students_with_enrollment_details(?)', [$studentId]);
+
+        return response()->json($details);
+    }
+
     public function create()
     {   
-        $students = DB::table('users')
-            ->join('students', 'users.id', '=', 'students.userId')
-            ->select('users.*', 'students.*')
+        $students = DB::table('students')
+            ->join('users', 'students.userId', '=', 'users.id')
+            ->select('students.id', 'users.name')
             ->get();
 
         return view('invoices.create', compact('students'));
@@ -48,8 +56,7 @@ class InvoiceController extends Controller
 
     public function store(Request $request)
     {
-        // Validate and store the invoice data
-        // Redirect or return a response
+        
     }
 
     public function edit($id)

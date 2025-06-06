@@ -44,10 +44,9 @@
                     </div>
 
                     <div class="flex flex-col w-[80%]">
-                        <label for="student">Gekozen pakket</label>
-
-                        <select name="student" id="student" class="border-2 border-[#B9A359] rounded-md p-2">
-                            <option value=""></option>
+                        <label for="packageSelect">Gekozen pakket</label>
+                        <select name="package" id="packageSelect" class="border-2 border-[#B9A359] rounded-md p-2">
+                            <option value="">Selecteer een student</option>
                         </select>    
                     </div>
 
@@ -88,4 +87,38 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const studentSelect = document.getElementById('student');
+            const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
+            const packageSelect = document.getElementById('packageSelect');
+
+            studentSelect.addEventListener('change', async (e) => {
+                const studentId = e.target.value;
+
+                if (!studentId) return;
+
+                const response = await fetch(`/student-details/${studentId}`);
+                const data = await response.json();
+
+                if (data.length > 0) {
+                    const student = data[0];
+
+                    // Vul de velden in
+                    startDateInput.value = student.startDate;
+                    endDateInput.value = student.endDate;
+
+                    // Reset en vul het pakket-selectieveld
+                    packageSelect.innerHTML = '';
+                    const option = document.createElement('option');
+                    option.value = student.pakketId;
+                    option.textContent = student.type;
+                    packageSelect.appendChild(option);
+                }
+            });
+        });
+    </script>
+
 </x-app-layout>
