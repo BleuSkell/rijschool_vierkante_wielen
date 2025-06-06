@@ -60,20 +60,20 @@
 
                     <div class="flex flex-col gap-4 w-[80%]">
                         <div class="flex flex-col w-full">
-                            <label for="excl_btw">Bedrag excl. BTW</label>
-                            <input type="number" name="excl_btw" id="excl_btw" step="0.01"
+                            <label for="amountExcBtw">Bedrag excl. BTW</label>
+                            <input type="number" name="amountExcBtw" id="amountExcBtw" step="0.01"
                                     class="border-2 border-[#B9A359] rounded-md p-2">
                         </div>
 
                         <div class="flex flex-col w-full">
-                            <label for="btw_percentage">BTW percentage</label>
-                            <input type="number" name="btw_percentage" id="btw_percentage"
+                            <label for="btw">BTW percentage</label>
+                            <input type="number" name="btw" id="btw"
                                     class="border-2 border-[#B9A359] rounded-md p-2">
                         </div>
 
                         <div class="flex flex-col w-full">
-                            <label for="incl_btw">Bedrag incl. BTW</label>
-                            <input type="number" name="incl_btw" id="incl_btw" step="0.01"
+                            <label for="amountIncBtw">Bedrag incl. BTW</label>
+                            <input type="number" name="amountIncBtw" id="amountIncBtw" step="0.01"
                                     class="border-2 border-[#B9A359] rounded-md p-2">
                         </div>
                     </div>
@@ -94,6 +94,7 @@
             const startDateInput = document.getElementById('startDate');
             const endDateInput = document.getElementById('endDate');
             const packageSelect = document.getElementById('packageSelect');
+            const amountExcBtwInput = document.getElementById('amountExcBtw');
 
             studentSelect.addEventListener('change', async (e) => {
                 const studentId = e.target.value;
@@ -116,6 +117,9 @@
                     option.value = student.pakketId;
                     option.textContent = student.type;
                     packageSelect.appendChild(option);
+
+                    // Vul het bedrag exclusief BTW
+                    amountExcBtwInput.value = student.pakketPrijsExcBtw;
                 }
             });
         });

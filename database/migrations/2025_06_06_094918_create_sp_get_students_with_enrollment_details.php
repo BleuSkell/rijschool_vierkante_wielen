@@ -29,6 +29,9 @@ return new class extends Migration
                         ,enrollments.endDate
                         ,packages.id AS pakketId
                         ,packages.type
+                        ,packages.numberOfLessons
+                        ,packages.pricePerLesson
+                        ,packages.pricePerLesson * packages.numberOfLessons AS pakketPrijsExcBtw
                 FROM enrollments
 
                 INNER JOIN students
