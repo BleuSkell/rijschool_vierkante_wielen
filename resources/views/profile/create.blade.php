@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold">
-            Create New User
+            Nieuwe Gebruiker Aanmaken
         </h2>
     </x-slot>
 
@@ -20,7 +20,7 @@
 
                         <!-- Name -->
                         <div>
-                            <x-input-label for="name" :value="__('Name')" />
+                            <x-input-label for="name" :value="__('Naam')" />
                             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" 
                                 :value="old('name')" required autofocus />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
@@ -28,7 +28,7 @@
 
                         <!-- Email -->
                         <div>
-                            <x-input-label for="email" :value="__('Email')" />
+                            <x-input-label for="email" :value="__('E-mail')" />
                             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" 
                                 :value="old('email')" required />
                             @error('email')
@@ -38,7 +38,7 @@
 
                         <!-- Password -->
                         <div>
-                            <x-input-label for="password" :value="__('Password')" />
+                            <x-input-label for="password" :value="__('Wachtwoord')" />
                             <x-text-input id="password" name="password" type="password" 
                                 class="mt-1 block w-full" required />
                             <x-input-error class="mt-2" :messages="$errors->get('password')" />
@@ -46,15 +46,15 @@
 
                         <!-- Confirm Password -->
                         <div>
-                            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                            <x-input-label for="password_confirmation" :value="__('Bevestig Wachtwoord')" />
                             <x-text-input id="password_confirmation" name="password_confirmation" type="password" 
                                 class="mt-1 block w-full" required />
                             <x-input-error class="mt-2" :messages="$errors->get('password_confirmation')" />
                         </div>
 
                         <div class="flex items-center gap-4">
-                            <x-primary-button>{{ __('Create User') }}</x-primary-button>
-                            <a href="{{ route('profile.index') }}" class="text-gray-600 hover:text-gray-900">Cancel</a>
+                            <x-primary-button>{{ __('Gebruiker Aanmaken') }}</x-primary-button>
+                            <a href="{{ route('profile.index') }}" class="text-gray-600 hover:text-gray-900">Annuleren</a>
                         </div>
                     </form>
                 </div>
