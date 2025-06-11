@@ -2,7 +2,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-row justify-center">
             <form 
-                action=""
+                action="{{ route('invoices.store') }}"
                 method="post"
                 class="bg-white overflow-hidden shadow-sm py-8 w-96 lg:w-4/5 border-4 border-[#B9A359]"
             >

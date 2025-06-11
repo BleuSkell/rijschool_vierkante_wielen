@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Student;
 
@@ -56,7 +57,45 @@ class InvoiceController extends Controller
 
     public function store(Request $request)
     {
-        
+        $validated = $request->validate([
+            'student' => 'required|exists:students,id',
+            'amountExcBtw' => 'required|numeric',
+            'btw' => 'required|numeric',
+            'amountIncBtw' => 'required|numeric',
+        ]);
+
+        // zoek de enrollmentId op basis van de studentId
+        $enrollment = DB::table('enrollments')
+                        ->where('studentId', $request->student)
+                        ->latest('startDate')
+                        ->first();
+
+        if (!$enrollment) {
+            return back()->withErrors(['student' => 'Geen inschrijvingen gevonden voor deze student.']);
+        }
+
+        // maak een uniek factuurnummer aan
+        $today = Carbon::today()->format('Ymd');
+        $latestInvoice = DB::table('invoices')
+                            ->whereDate('invoiceDate', Carbon::today())
+                            ->orderByDesc('id')
+                            ->first();
+
+        $nexSequence = $latestInvoice ? ((int)substr($latestInvoice->invoiceNumber, -4)) + 1 : 1;
+        $invoiceNumber = 'INV-' . $today . '-' . str_pad($nexSequence, 4, '0', STR_PAD_LEFT);
+
+        // maak de factuur aan
+        DB::table('invoices')->insert([
+            'enrollmentId' => $enrollment->id,
+            'invoiceNumber' => $invoiceNumber,
+            'invoiceDate' => now(),
+            'amountExcBtw' => $request->amountExcBtw,
+            'btw' => $request->btw,
+            'amountIncBtw' => $request->amountIncBtw,
+            'invoiceStatus' => 'Unpaid',
+        ]);
+
+        return redirect()->route('invoices.index')->with('success', 'Factuur succesvol aangemaakt.');
     }
 
     public function edit($id)
