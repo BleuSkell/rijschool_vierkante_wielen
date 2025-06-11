@@ -15,7 +15,7 @@ class CreateCarsTable extends Migration
             $table->id();
             $table->string('brand', 100);
             $table->string('model', 100);
-            $table->string('licensePlate', 20);
+            $table->string('licensePlate', 20)->unique();
             $table->string('fuelType', 50);
             $table->boolean('isActive')->default(true);
             $table->string('note', 255)->nullable();

@@ -2,6 +2,22 @@
 <div class="bg-gray-800 min-h-screen flex flex-col items-center py-1">
     <div class="w-full max-w-lg bg-gray-900 rounded-lg shadow-lg p-2">
         <h1 class="text-3xl font-bold text-white mb-6 text-center">Auto toevoegen</h1>
+        <!-- Toon validatiefouten -->
+        @if ($errors->any())
+            <div class="mb-4">
+                <ul class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                    @foreach ($errors->all() as $error)
+                        <li>
+                            @if(str_contains($error, 'licensePlate') && str_contains($error, 'unique'))
+                                Kenteken van de auto bestaat al.
+                            @else
+                                {{ $error }}
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!-- Formulier voor het toevoegen van een auto -->
         <form id="carForm" method="POST" action="{{ route('autos.store') }}">
             @csrf
@@ -44,15 +60,7 @@
                 <label class="block text-white mb-2" for="note">Opmerking</label>
                 <textarea name="note" id="note" class="w-full rounded px-3 py-2 bg-gray-700 text-black placeholder-gray-300 focus:text-black"></textarea>
             </div>
-            <!-- Switch voor unhappy (simuleert netwerkfout) -->
-            <div class="mb-4 flex items-center">
-                <label class="block text-white mb-2 mr-4" for="unhappySwitch">Unhappy</label>
-                <input type="checkbox" id="unhappySwitch" name="unhappySwitch" class="toggle-checkbox h-6 w-6 rounded bg-gray-700 border-2 border-gray-400 focus:ring-0">
-            </div>
-            <!-- Foutmelding bij unhappy -->
-            <div id="errorMsg" class="text-red-500 mb-4 hidden">
-                Sorry, geen network. Probeer het later opnieuw.
-            </div>
+
             <!-- Actieknoppen -->
             <div class="flex justify-between">
                 <a href="{{ route('autos') }}" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Annuleren</a>

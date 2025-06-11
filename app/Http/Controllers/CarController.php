@@ -33,7 +33,7 @@ class CarController extends Controller
         $validated = $request->validate([
             'brand' => 'required|string|max:255',
             'model' => 'required|string|max:255',
-            'licensePlate' => 'required|string|max:255',
+            'licensePlate' => 'required|string|max:255|unique:cars,licensePlate',
             'fuelType' => 'required|string|max:255',
             'isActive' => 'required|in:0,1',
             'note' => 'nullable|string|max:255',
