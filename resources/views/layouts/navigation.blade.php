@@ -27,6 +27,7 @@
                         </x-nav-link>
                     </div>
 
+                    @if ($role === 'Admin')
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                             <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
                                 {{ __('Gebruiker profielen') }}
@@ -56,7 +57,7 @@
                                 {{ __('Rijlessen') }}
                             </x-nav-link>
                         </div>
-
+                    @endif
                 @endauth
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">

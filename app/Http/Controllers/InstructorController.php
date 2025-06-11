@@ -14,12 +14,12 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        try {
             $instructors = DB::select('CALL sp_get_all_instructors()');
-            return view('instructors.index', ['instructors' => $instructors]);
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Unable to retrieve instructors: ' . $e->getMessage());
-        }
+            
+            // Add debug logging
+            \Log::info('Instructors retrieved:', ['count' => count($instructors)]);
+            
+            return view('instructors.index', compact('instructors'));
     }
 
     /**
@@ -105,7 +105,7 @@ class InstructorController extends Controller
     {
         try {
             $validated = $request->validate([
-                'userId' => 'sometimes|exists:users,id',
+                'userId' => 'sometimes|exists:users,id',    
                 'number' => 'sometimes|string|max:50',
                 'isActive' => 'sometimes|boolean',
                 'note' => 'nullable|string|max:255',

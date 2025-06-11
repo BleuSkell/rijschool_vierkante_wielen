@@ -20,9 +20,13 @@ class CreateInstructorProcedures extends Migration
         DB::unprepared('
             CREATE PROCEDURE sp_get_all_instructors()
             BEGIN
-                SELECT i.*, u.name as user_name, u.email 
+                SELECT 
+                    i.*,
+                    u.name as user_name,
+                    u.email
                 FROM instructors i
-                JOIN users u ON i.userId = u.id;
+                JOIN users u ON i.userId = u.id
+                ORDER BY i.number;
             END
         ');
 
