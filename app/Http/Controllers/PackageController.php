@@ -27,7 +27,7 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'type' => 'required|string|max:50',
+            'type' => 'required|string|max:50|unique:packages,type',
             'numberOfLessons' => 'required|integer|min:1',
             'pricePerLesson' => 'required|numeric|min:0',
             'isActive' => 'required|in:0,1',
