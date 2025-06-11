@@ -18,6 +18,14 @@ Route::middleware([IsAdmin::class, 'auth'])->group(function () {
     Route::get('/profiles', [ProfileController::class, 'index'])
         ->name('profile.index');
 
+    // Create new profile form
+    Route::get('/profile/create', [ProfileController::class, 'create'])
+        ->name('profile.create');
+
+    // Store new profile
+    Route::post('/profile', [ProfileController::class, 'store'])
+        ->name('profile.store');
+
     // Show profile edit form
     Route::get('/profile/edit', [ProfileController::class, 'edit'])
         ->middleware('auth')
