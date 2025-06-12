@@ -1,5 +1,23 @@
 <x-app-layout>
     <div class="py-12">
+
+        @if ($errors->any())
+            <div class="flex flex-row justify-center">
+                <div class="bg-red-100 text-red-700 p-4 rounded-lg mb-4 w-[50%]">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
+
+        <div 
+            id="noPackageError"
+            class="flex flex-row justify-center"
+        ></div>
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-row justify-center">
             <form 
                 action="{{ route('invoices.store') }}"
@@ -108,8 +126,24 @@
             const btwInput = document.getElementById('btw');
             const amountIncBtwInput = document.getElementById('amountIncBtw');
 
+            // get error
+            const form = document.getElementById('noPackageError');
+            let warningMessage = null;
+
             studentSelect.addEventListener('change', async (e) => {
                 const studentId = e.target.value;
+
+                // reset input fields and error message
+                startDateInput.value = '';
+                endDateInput.value = '';
+                packageSelect.innerHTML = '<option value="">Selecteer een leerling</option>';
+                amountExcBtwInput.value = '';
+
+                // delete earlier error message if it exists
+                if (warningMessage) {
+                    warningMessage.remove();
+                    warningMessage = null;
+                }
 
                 if (!studentId) return;
                 
@@ -135,6 +169,11 @@
 
                     // fill the amount exc btw field in
                     amountExcBtwInput.value = student.pakketPrijsExcBtw;
+                } else {
+                    warningMessage = document.createElement('p');
+                    warningMessage.className = 'bg-red-100 text-red-700 p-4 rounded-lg my-4 w-[50%]';
+                    warningMessage.textContent = 'De leerling heeft nog geen pakketten gekozen, je kan nog geen factuur aanmaken.';
+                    form.insertBefore(warningMessage, form.firstChild);
                 }
             });
 

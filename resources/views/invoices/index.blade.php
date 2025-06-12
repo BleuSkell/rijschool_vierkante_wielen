@@ -1,5 +1,13 @@
 <x-app-layout>
     <div class="py-12">
+        @if (session('success'))
+            <div class="flex flex-row justify-center">
+                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded-md shadow w-[50%]">
+                    {{ session('success') }}
+                </div>
+            </div>
+        @endif
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-row justify-center">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg p-4 w-96 lg:w-full">
                 <a href="{{ route('invoices.create') }}">
