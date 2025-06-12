@@ -100,8 +100,20 @@
                         </div>
                     </div>
 
-                    <div class="w-[80%] flex justify-end">
-                        <button type="submit" class="bg-[#B9A359] text-white rounded-md p-2">
+                    <div class="w-[80%] flex justify-between">
+                        <a  href="{{ route('invoices.index') }}"
+                            class=" bg-[#B9A359] text-white rounded-md p-2
+                                    hover:bg-[#867233]
+                                    transition duration-150 ease-in-out"
+                        >
+                            Annuleren
+                        </a>
+
+                        <button type="submit" 
+                            class=" bg-[#B9A359] text-white rounded-md p-2
+                                    hover:bg-[#867233]
+                                    transition duration-150 ease-in-out"
+                        >
                             Aanmaken
                         </button>
                     </div>
@@ -126,7 +138,7 @@
             const btwInput = document.getElementById('btw');
             const amountIncBtwInput = document.getElementById('amountIncBtw');
 
-            // get error
+            // get error div and inititalize error message
             const form = document.getElementById('noPackageError');
             let warningMessage = null;
 
@@ -170,6 +182,7 @@
                     // fill the amount exc btw field in
                     amountExcBtwInput.value = student.pakketPrijsExcBtw;
                 } else {
+                    // create error message
                     warningMessage = document.createElement('p');
                     warningMessage.className = 'bg-red-100 text-red-700 p-4 rounded-lg my-4 w-[50%]';
                     warningMessage.textContent = 'De leerling heeft nog geen pakketten gekozen, je kan nog geen factuur aanmaken.';

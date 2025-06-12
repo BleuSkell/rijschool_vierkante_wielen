@@ -10,11 +10,18 @@
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-row justify-center">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg p-4 w-96 lg:w-full">
-                <a href="{{ route('invoices.create') }}">
-                    <button>
-                        Factuur aanmaken
-                    </button>
-                </a>
+                <div class="flex flex-row justify-end">
+                    <a href="{{ route('invoices.create') }}">
+                        <button class="
+                                bg-[#B9A359] text-white p-2 rounded-md
+                                hover:bg-[#867233]
+                                transition duration-150 ease-in-out
+                                mr-2
+                        ">
+                            Factuur aanmaken
+                        </button>
+                    </a>
+                </div>
 
                 @if ($invoices)
                     @foreach ($invoices as $invoice)
