@@ -70,10 +70,20 @@
                             </div>
 
                             <div class="lg:mb-0 mb-4">
+                                <a href="{{ route('payments.create') }}">
+                                    <button class="
+                                        bg-blue-500 text-white p-2 rounded-md
+                                        hover:bg-blue-700
+                                        transition duration-150 ease-in-out
+                                    ">
+                                        Betalen
+                                    </button>
+                                </a>
+
                                 <a href="{{ route('invoices.show', $invoice->id) }}">
                                     <button class="
-                                        bg-[#B9A359] text-white p-2 rounded-md
-                                        hover:bg-[#867233]
+                                        bg-blue-600 text-white p-2 rounded-md
+                                        hover:bg-blue-800
                                         transition duration-150 ease-in-out
                                     ">
                                         Details

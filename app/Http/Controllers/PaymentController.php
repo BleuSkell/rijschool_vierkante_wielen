@@ -30,4 +30,14 @@ class PaymentController extends Controller
 
         return view('payments.index', ['payments' => $paginatedPayments]);
     }
+
+    public function create()
+    {
+        return view('payments.create');
+    }
+
+    public function store()
+    {
+
+    }
 }
