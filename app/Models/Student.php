@@ -23,6 +23,6 @@ class Student extends Model
 
     public function enrollment()
     {
-        return $this->hasOne(Enrollment::class);
+        return $this->hasOne(Enrollment::class, 'studentId');
     }
 }
