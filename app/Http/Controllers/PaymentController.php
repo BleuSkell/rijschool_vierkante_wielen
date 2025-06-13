@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Payment;
 
 class PaymentController extends Controller
 {
@@ -31,13 +32,29 @@ class PaymentController extends Controller
         return view('payments.index', ['payments' => $paginatedPayments]);
     }
 
-    public function create()
-    {
-        return view('payments.create');
+    public function create($invoiceId)
+    {   
+        return view('payments.create', compact('invoiceId'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $validated = $request->validate([
+            'invoiceId' => 'required|exists:invoices,id',
+            'bankingDetails' => 'required|string',
+            'bankingDetailsCheck' => 'required|same:bankingDetails'
+        ]);
 
+        Payment::create([
+            'invoiceId' => $request->invoiceId,
+            'date' => now(),
+            'status' => 'Paid',
+            'isActive' => true,
+            'note' => null,
+            'dateCreated' => now(),
+            'dateModified' => now(),
+        ]);
+
+        return redirect()->route('invoices.index')->with('success', 'Factuur betaald.');
     }
 }

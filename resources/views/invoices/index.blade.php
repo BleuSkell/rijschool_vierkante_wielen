@@ -70,7 +70,7 @@
                             </div>
 
                             <div class="lg:mb-0 mb-4">
-                                <a href="{{ route('payments.create') }}">
+                                <a href="{{ route('payments.create', $invoice->id) }}">
                                     <button class="
                                         bg-blue-500 text-white p-2 rounded-md
                                         hover:bg-blue-700
