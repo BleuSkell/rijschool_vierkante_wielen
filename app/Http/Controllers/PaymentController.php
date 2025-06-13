@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Payment;
+use App\Models\Invoice;
 
 class PaymentController extends Controller
 {
@@ -54,6 +55,12 @@ class PaymentController extends Controller
             'dateCreated' => now(),
             'dateModified' => now(),
         ]);
+
+        $invoice = Invoice::find($request->invoiceId);
+        if ($invoice) {
+            $invoice->invoiceStatus = 'Paid';
+            $invoice->save();
+        }
 
         return redirect()->route('invoices.index')->with('success', 'Factuur betaald.');
     }

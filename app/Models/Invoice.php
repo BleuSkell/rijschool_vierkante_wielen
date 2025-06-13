@@ -7,7 +7,9 @@ use App\Models\Enrollment;
 use App\Models\Payment;
 
 class Invoice extends Model
-{
+{   
+    public $timestamps = false;
+
     public $table = 'invoices';
 
     protected $fillable = [
@@ -19,6 +21,9 @@ class Invoice extends Model
         'amountIncBtw',
         'invoiceStatus',
         'note',
+        'isActive',
+        'dateCreated',
+        'dateUpdated',
     ];
 
     public function enrollment()
